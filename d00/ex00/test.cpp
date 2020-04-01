@@ -5,6 +5,7 @@ class Foo {
 	Foo() {
 		std::cout << "foo's constructor default" << std::endl;
 	}
+
 	public:
 	Foo(int x) {
 		std::cout << "foo's constructor " << x << std::endl;
@@ -18,6 +19,18 @@ class Bar : public Foo {
 	}
 };
 
+class Qux {
+	public:
+	Qux() : _foo("Make this foo"), _bar("And this bar") {}
+
+	private:
+	std::string _foo;
+	std::string _bar;
+};
+
 int main(void) {
 	Bar bar;
+	Qux qux;
+
+	return (0);
 }
