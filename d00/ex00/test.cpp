@@ -1,7 +1,23 @@
 #include <iostream>
 
-int main(int ac, char* av[]) {
-  std::cout << "yo\n";
-  std::cout << av[1] << "\n";
-  return (0);
+class Foo {
+	public:
+	Foo() {
+		std::cout << "foo's constructor default" << std::endl;
+	}
+	public:
+	Foo(int x) {
+		std::cout << "foo's constructor " << x << std::endl;
+	}
+};
+
+class Bar : public Foo {
+	public:
+	Bar() : Foo(10) {
+		std::cout << "Bar's constructor" << std::endl;
+	}
+};
+
+int main(void) {
+	Bar bar;
 }
