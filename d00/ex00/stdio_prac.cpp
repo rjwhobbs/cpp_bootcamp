@@ -3,7 +3,7 @@
 
 int	main(void) {
 
-	std::string mystring = "THESE are Words!";
+	std::string mystring = "THESE are Words! " "And these";
 	char buff[512];
 	float x (123.123);
 	decltype(x) y = 321.321;
