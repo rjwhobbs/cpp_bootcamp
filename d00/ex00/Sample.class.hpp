@@ -3,9 +3,13 @@
 
 class Sample {
 	public:
-	Sample(void);
+	Sample(int i, char c, float f);
 	~Sample(void);
-	int foo;
+
+	int i;
+	char c;
+	float f;
+
 	void bar(void);
 };
 
