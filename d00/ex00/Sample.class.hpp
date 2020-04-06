@@ -8,9 +8,9 @@ class Sample {
 
 	int i;
 	char c;
-	float f;
+	float const f;
 
-	void bar(void);
+	void bar(void) const;
 };
 
 #endif
