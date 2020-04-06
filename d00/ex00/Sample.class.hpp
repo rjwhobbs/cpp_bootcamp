@@ -11,6 +11,7 @@ class Sample {
 	float const f;
 
 	void bar(void) const;
+	int getj(void) const;
 
 	private:
 

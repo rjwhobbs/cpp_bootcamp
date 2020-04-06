@@ -30,3 +30,7 @@ void Sample::_pbar(void) const {
 
 	return ;
 }
+
+int Sample::getj(void) const {
+	return this->_j;
+}
