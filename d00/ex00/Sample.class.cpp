@@ -10,3 +10,8 @@ Sample::~Sample(void) {
 	std::cout << "Des" << std::endl;
 	return ;
 }
+
+void Sample::bar(void) {
+	std::cout << "I am bar func" << std::endl;
+	return ;
+}
