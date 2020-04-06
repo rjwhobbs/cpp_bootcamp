@@ -3,6 +3,7 @@
 
 Sample::Sample(void) {
 	std::cout << "Con" << std::endl;
+	this->foo = 42;
 	return ;
 }
 
