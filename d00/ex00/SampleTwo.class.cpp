@@ -12,6 +12,11 @@ int SampleTwo::getFoo(void) const {
 }
 
 int SampleTwo::compare(SampleTwo* other) const {
-	
-	return 1;
+	if (this->_foo < other->getFoo()) {
+		return -1;
+	} else if (this->_foo > other->getFoo()) {
+		return 1;
+	} else {
+		return 0;
+	}
 }

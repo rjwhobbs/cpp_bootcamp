@@ -2,27 +2,27 @@
 #include "Sample.class.hpp"
 #include "SampleTwo.class.hpp"
 
-void test3(SampleTwo*** obj) {
-	std::cout << (**obj)->bar << std::endl;
-	(**obj)->bar = 9000;
+// void test3(SampleTwo*** obj) {
+// 	std::cout << (**obj)->bar << std::endl;
+// 	(**obj)->bar = 9000;
 
-	return ;
-}
+// 	return ;
+// }
 
-void test2(SampleTwo** obj) {
-	std::cout << (*obj)->bar << std::endl;
-	(*obj)->bar = 147;
-	test3(&obj);
-	return ;
-}
+// void test2(SampleTwo** obj) {
+// 	std::cout << (*obj)->bar << std::endl;
+// 	(*obj)->bar = 147;
+// 	test3(&obj);
+// 	return ;
+// }
 
-void test(SampleTwo* obj) {
-	std::cout << obj->bar << std::endl;
-	obj->bar = 93;
-	test2(&obj);
+// void test(SampleTwo* obj) {
+// 	std::cout << obj->bar << std::endl;
+// 	obj->bar = 93;
+// 	test2(&obj);
 
-	return ;
-}
+// 	return ;
+// }
 
 int main(void) {
 	// Sample sample(7, 'y', 2.3);
@@ -32,10 +32,14 @@ int main(void) {
 	// std::cout << sample.getj() << std::endl;
 	// sample.bar();
 	SampleTwo sample(7);
-	sample.bar = 42;
-	std::cout << sample.getFoo() << std::endl;
-	test(&sample);
-	std::cout << sample.bar << std::endl;
+	SampleTwo sampleTwo(7);
+
+	if (sample.compare(&sampleTwo) == 0) {
+		std::cout << "Yo" << std::endl;
+	}	else {
+		std::cout << "No" << std::endl;
+	}
+
 
 	return 0;
 }
