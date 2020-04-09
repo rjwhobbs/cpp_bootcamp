@@ -40,6 +40,5 @@ int main(void) {
 		std::cout << "No" << std::endl;
 	}
 
-
 	return 0;
 }
