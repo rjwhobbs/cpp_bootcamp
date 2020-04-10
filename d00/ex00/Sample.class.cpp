@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Sample.class.hpp"
 
-Sample::Sample(int i, char c, float f) : i(i), c(c), f(f) {
+Sample::Sample(int x, char y, float z) : i(x), c(y), f(z) {
 	std::cout << "Con" << std::endl;
 
 	// this->foo = 42; // this is a pointer to the class instance

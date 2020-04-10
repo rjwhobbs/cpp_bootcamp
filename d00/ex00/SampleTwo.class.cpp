@@ -2,9 +2,12 @@
 
 SampleTwo::SampleTwo(int foo) {
 	this->_foo = foo;
+
+	return ;
 }
 
 SampleTwo::~SampleTwo() {
+	return ;
 }
 
 int SampleTwo::getFoo(void) const {

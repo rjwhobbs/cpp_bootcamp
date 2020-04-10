@@ -25,20 +25,20 @@
 // }
 
 int main(void) {
-	// Sample sample(7, 'y', 2.3);
-	// std::cout << sample.i << sample.c << sample.f << std::endl;
-	// sample.i = 42;
-	// std::cout << sample.i << std::endl;
-	// std::cout << sample.getj() << std::endl;
-	// sample.bar();
-	SampleTwo sample(7);
-	SampleTwo sampleTwo(7);
+	Sample sample(7, 'y', 2.3);
+	std::cout << sample.i << sample.c << sample.f << std::endl;
+	sample.i = 42;
+	std::cout << sample.i << std::endl;
+	std::cout << sample.getj() << std::endl;
+	sample.bar();
+	// SampleTwo sample(7);
+	// SampleTwo sampleTwo(7);
 
-	if (sample.compare(&sampleTwo) == 0) {
-		std::cout << "Yo" << std::endl;
-	}	else {
-		std::cout << "No" << std::endl;
-	}
+	// if (sample.compare(&sampleTwo) == 0) {
+	// 	std::cout << "Yo" << std::endl;
+	// }	else {
+	// 	std::cout << "No" << std::endl;
+	// }
 
 	return 0;
 }
