@@ -8,7 +8,7 @@ int	main(void) {
 	int	Simple::*p;
 	void (Simple::*f)(void) const;
 
-	f = &Simple::bar;
+	f = &Simple::bar; // These seem like the main diff between c and cpp
 	p = &Simple::foo;
 
 	sim.*p = 42;
