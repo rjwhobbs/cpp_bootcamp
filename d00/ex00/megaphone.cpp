@@ -13,8 +13,13 @@ int main(int ac, char* av[]) {
 	std::string test = av[1];
 	// test += av[2];
 
-	std::for_each(test.begin(), test.end(), test_func);
-	std::cout << test;
+	// std::for_each(test.begin(), test.end(), test_func);
+	// std::cout << test;
+
+	std::string str = "zzz";
+	test_func(str[0]);
+
+	std::cout << str << std::endl;
 
 	return (0);
 }
