@@ -5,58 +5,73 @@ void toupper_fn(char &c) { // So it looks like cpp can decide to pass by ref or 
 	c = toupper(c);
 }
 
-std::string split(std::string &str) {
-	std::string temp = "";
-	size_t start = str.find_first_of(" \t\n\r\f");
+// This takes all the concatinated args and strips the unnecessary white space, not sure if that's required
+std::string new_str(std::string &str) {
+	std::string new_string = "";
+	size_t start = 0;
 	size_t end = 0;
 
 	if (start != str.npos) {
 		while (start != str.npos) {
-			while (isspace(str[start]) && start != str.length()) {
+			while (start < str.length() && isspace(str[start])) {
 				start++;
 			}
 			end = str.find_first_of(" \t\n\r\f", start);
 			if (end != str.npos) {
-				temp += str.substr(start, end - start);
-				temp += ' ';
+				new_string += str.substr(start, end - start);
+				new_string += ' ';
 			} else {
-				temp += str.substr(start, str.length() - start);
-				if (isspace(str[str.length() - 1])) {
-					temp.pop_back();
+				if (start != str.length()) {
+					new_string += str.substr(start, str.length() - start);
 				}
-				return temp;
+				if (!new_string.empty() && isspace(new_string[new_string.length() - 1])) {
+					new_string.pop_back();
+				}
+				return new_string;
 			}
 			start = str.find_first_of(" \t\n\r\f", end);
 		}
 	}
-	return temp;
+	return str;
 }
 
 int main(int ac, char *av[]) {
 
+	std::string default_str = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
+
 	if (ac == 1) {
+		std::cout << default_str << std::endl;
 		return (0);
 	}
 
-	// size_t j = 0;
-	std::string temp = av[1];
+	size_t len;
+	size_t i;
+	int c = 1;
+	std::string args;
 
-	std::string test = split(temp);
+	while (c < ac) {
+		args += av[c];
+		if (c < ac - 1) {
+			args += ' ';
+		}
+		c++;
+	}
+	// std::cout << args << std::endl; 
+	args = new_str(args); //  thid is weird but hey cpp
 
-	std::cout << test << std::endl;
+	len = args.length();
 
-	// while (isspace(temp[j]) != 0) {
-	// 	temp.erase(j, 1);
-	// 	printf("x\n");
-	// }
-	// std::cout << temp << std::endl;
+	if (!len) {
+		std::cout << default_str << std::endl;
+		return (0);
+	}
 
-	// std::string args = av[1];
-	// size_t i = args.length();
-	// std::cout << i << std::endl;
-	// args.erase(0, 1);
-	// std::cout << args.length() << std::endl;
-	// std::cout << args[i] << std::endl;
+	i = 0;
+	while (i < len) {
+		toupper_fn(args[i++]);
+	}
+
+	std::cout << args << std::endl;
 
 	return (0);
 }
