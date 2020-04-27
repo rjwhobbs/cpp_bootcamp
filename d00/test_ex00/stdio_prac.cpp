@@ -11,7 +11,7 @@ int	main(void) {
 	std::cout << mystring << std::endl;
 	std::cout << (mystring =  "Type some: ");
 	std::cin >> buff;
-	std::cout << x << ' ' << y << ' ' << buff << std::endl;
+	std::cout << x << ' ' << y << ' ' << buff << std::endl; //This takes care of \n char output on different systems
 
 	return (0);
 }
