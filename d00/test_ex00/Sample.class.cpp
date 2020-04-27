@@ -9,7 +9,7 @@ Sample::Sample(int x, char y, float z) : i(x), c(y), f(z) {
 	this->_j = 13;
 	std::cout << this->_j << std::endl;
 	this->_pbar();
-	return ;
+	return ; // You dont have to return here but it shows you that you're done
 }
 
 Sample::~Sample(void) {

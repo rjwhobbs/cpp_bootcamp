@@ -1,0 +1,1 @@
+// see Sample.class.cpp in test dir
