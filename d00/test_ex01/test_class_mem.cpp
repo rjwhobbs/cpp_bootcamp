@@ -12,13 +12,17 @@ int	main(void) {
 	Contact contacts[8];
 	std::string command;
 
-	// int i = 0;
+	 int i = 0;
 
 	while (command != "EXIT") {
 		std::cout << "Type EXIT to well, exit: ";
 		std::getline(std::cin, command);
 		if (command == "ADD") {
-			add_contact(contacts[0]);
+			if (i < 8) {
+				add_contact(contacts[i++]);
+			} else {
+				std::cout << "You can only add 8 contacts to this rubbish contact book" << std::endl; 
+			}
 		}
 		// print_nl(command);
 	}

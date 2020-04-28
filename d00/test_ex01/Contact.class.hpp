@@ -9,7 +9,7 @@ class Contact {
 
 	std::string f_name;
 	std::string l_name;
-	std::string nick_name ;
+	std::string nick_name;
 	std::string login_name;
 	std::string postal_addr;
 	std::string email_addr;
