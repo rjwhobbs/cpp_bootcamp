@@ -3,7 +3,7 @@
 #include "phone_book.hpp"
 #include "Contact.class.hpp"
 
-void print_nl(std::string &str) {
+static void print_nl(std::string &str) {
 	std::cout << str << std::endl;
 }
 
@@ -28,6 +28,9 @@ int	main(void) {
 	}
 
 	std::cout << contacts[0].f_name << std::endl;
+	std::cout << contacts[0].l_name << std::endl;
+	std::cout << contacts[0].nick_name << std::endl;
+	std::cout << contacts[0].login_name << std::endl;
 
 	return 0;
 }
