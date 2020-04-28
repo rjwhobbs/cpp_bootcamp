@@ -16,7 +16,7 @@ class Contact {
 	std::string ph_num;
 	std::string birth_date;
 	std::string fav_meal;
-	std::string uw_color;
+	std::string uw_colour;
 	std::string d_secrect;
 };
 
