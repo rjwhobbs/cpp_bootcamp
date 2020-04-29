@@ -35,7 +35,7 @@ void add_contact(Contact &contact) {
 	std::string temp;
 	int inp_count = 0;
 	
-	while (inp_count < 4) {
+	while (inp_count < 11) {
 		print_command(inp_count);
 		std::getline(std::cin, temp);
 		if (!temp.empty() && no_space(temp)) {

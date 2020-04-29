@@ -18,6 +18,8 @@ class Contact {
 	std::string fav_meal;
 	std::string uw_colour;
 	std::string d_secrect;
+
+	int contact_empty(void) const;
 };
 
 #endif
