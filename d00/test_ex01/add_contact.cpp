@@ -1,23 +1,9 @@
 #include <string>
 #include <iostream>
+#include <cctype>
 #include "Contact.class.hpp"
 #include "phone_book.hpp"
-#include <cctype>
-
-static void print_str_nl(std::string &str) {
-	std::cout << str << std::endl;
-}
-
-static void print_str(std::string &str) {
-	std::cout << str;
-}
-
-static void print_cstr(const char *str) {
-	std::cout << str;
-}
-static void print_cstr_nl(const char *str) {
-	std::cout << str << std::endl;
-}
+#include "print.hpp"
 
 static int no_space(std::string &str) {
 	size_t i = 0;

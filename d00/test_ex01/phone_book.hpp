@@ -3,5 +3,6 @@
 # include "Contact.class.hpp"
 
 void add_contact(Contact &contact);
+void search(Contact contacts[]);
 
 #endif
