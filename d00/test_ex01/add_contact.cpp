@@ -7,10 +7,15 @@
 
 static int no_space(std::string &str) {
 	size_t i = 0;
+	size_t check = 0;
+
 	while (i < str.length()) {
 		if (isspace(str[i++])) {
-			return 0;
+			check++;
 		}
+	}
+	if (check == i) {
+		return 0;
 	}
 	return 1;
 }

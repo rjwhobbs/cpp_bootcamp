@@ -20,6 +20,7 @@ class Contact {
 	std::string d_secrect;
 
 	int contact_empty(void) const;
+	void print_all_info(void) const;
 };
 
 #endif

@@ -5,12 +5,11 @@
 #include "phone_book.hpp"
 #include "print.hpp"
 
-/* stroi max min 2147483647 -2147483648 */
-
+//Need to debug this func
 int only_digits(std::string &str) {
 	size_t c = 0;
 
-	while (c < str.length() && c < str.npos) {
+	while (c < str.length()) {
 		if (!isdigit(str[c])) {
 			return 0;
 		}
@@ -48,11 +47,13 @@ void print_index(Contact contacts[], int index_max) {
 		std::getline(std::cin, input);
 
 		if (input != "MENU") {
-			if (input.length() < 2 && only_digits(input)) {
+			if (!input.empty() && input.length() < 2 && only_digits(input)) {
 				index = std::stoi(input, NULL, 10) - 1;
 			}
 			if (index >= 0 && index <= index_max) {
-					print_str_nl(contacts[index].f_name);
+				contacts[index].print_all_info();
+				index = -1;
+				input.clear();
 			} else {
 				print_cstr_nl("Only enter a valid index, or type MENU to return to the main menu.");
 			}

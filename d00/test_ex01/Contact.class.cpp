@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Contact.class.hpp"
 
 Contact::Contact(void) {
@@ -23,4 +24,18 @@ int Contact::contact_empty(void) const {
 		return 1;
 	}
 	return 0;
+}
+
+void Contact::print_all_info(void) const {
+	std::cout << "First name       : " + this->f_name << std::endl;
+	std::cout << "Last name        : " + this->l_name << std::endl;
+	std::cout << "Nickname         : " + this->nick_name << std::endl;
+	std::cout << "login name       : " + this->login_name << std::endl;
+	std::cout << "Postal address   : " + this->postal_addr << std::endl;
+	std::cout << "Email address    : " + this->email_addr << std::endl;
+	std::cout << "Phone number     : " + this->ph_num << std::endl;
+	std::cout << "Birth date       : " + this->birth_date << std::endl;
+	std::cout << "Favourite meal   : " + this->fav_meal << std::endl;
+	std::cout << "Underwear colour : " + this->uw_colour << std::endl;
+	std::cout << "Darkest secret   : " + this->d_secrect << std::endl;
 }
