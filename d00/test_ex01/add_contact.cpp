@@ -5,7 +5,7 @@
 #include "phone_book.hpp"
 #include "print.hpp"
 
-static int no_space(std::string &str) {
+static int not_all_space(std::string &str) {
 	size_t i = 0;
 	size_t check = 0;
 
@@ -43,7 +43,7 @@ void add_contact(Contact &contact) {
 	while (inp_count < 11) {
 		print_command(inp_count);
 		std::getline(std::cin, temp);
-		if (!temp.empty() && no_space(temp)) {
+		if (!temp.empty() && not_all_space(temp)) {
 			switch(inp_count) {
 				case 0: contact.f_name = temp; break;
 				case 1: contact.l_name = temp; break;

@@ -29,7 +29,7 @@ int	main(void) {
 			return 0;
 		} 
 		else {
-			print_cstr_nl("Option not recognised2.");
+			print_cstr_nl("Option not recognised.");
 		}
 	}
 
