@@ -12,10 +12,11 @@ int	main(void) {
 	int i = 0;
 
 	print_cstr_nl("Welcome to this amazing contact app.");
-	print_cstr_nl("Available options: ADD, SEARCH, EXIT.");
 
-	while (command != "EXIT") {
+	while (1) {
+		print_cstr_nl("Main menu options: ADD, SEARCH, EXIT.");
 		std::getline(std::cin, command);
+
 		if (command == "ADD") {
 			if (i < 8) {
 				add_contact(contacts[i++]);
@@ -31,11 +32,6 @@ int	main(void) {
 			print_cstr_nl("Option not recognised please try ADD, SEARCH, or EXIT.");
 		}
 	}
-
-	// std::cout << contacts[0].f_name << std::endl;
-	// std::cout << contacts[0].l_name << std::endl;
-	// std::cout << contacts[0].nick_name << std::endl;
-	// std::cout << contacts[0].login_name << std::endl;
 
 	return 0;
 }

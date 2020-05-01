@@ -22,3 +22,18 @@ void print_str_pad(std::string str, int pad) {
 	std::cout << std::setw(pad);
 	std::cout << str << std::flush;
 }
+
+void print_str_pad_nl(std::string str, int pad) {
+	std::cout << std::setw(pad);
+	std::cout << str << std::endl;
+}
+
+void print_cstr_pad(const char *str, int pad) {
+	std::cout << std::setw(pad);
+	std::cout << str << std::flush;
+}
+
+void print_cstr_pad_nl(const char *str, int pad) {
+	std::cout << std::setw(pad);
+	std::cout << str << std::endl;
+}
