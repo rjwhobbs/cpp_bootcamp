@@ -13,6 +13,7 @@
 // 	return ;
 // }
 
+// This does not work
 Temp::~Temp(void) {
 	std::cout << "destroyed" << std::endl;
 	return ;

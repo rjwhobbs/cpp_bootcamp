@@ -13,7 +13,7 @@ class Temp {
 		this->b = j;
 	};
 	// Temp(void);
-	~Temp(void);
+	// ~Temp(void); // Seems one can't define this in .cpp with template being here
 };
 
 #endif
