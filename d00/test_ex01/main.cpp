@@ -4,6 +4,7 @@
 #include "Contact.class.hpp"
 #include "print.hpp"
 
+// Every output must go to newline?
 int	main(void) {
 	
 	Contact contacts[8];
