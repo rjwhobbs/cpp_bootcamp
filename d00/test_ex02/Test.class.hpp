@@ -4,10 +4,18 @@
 class Test {
 	public:
 
-	typedef Test t;
+		typedef Test t;
+		int y;
 
-	Test(void);
-	~Test(void);
+		Test(void);
+		Test(int x);
+		~Test(void);
+
+		static int getNbInst(void);
+	
+	private:
+
+		static int _nbInst;
 };
 
 #endif
