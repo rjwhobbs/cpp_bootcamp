@@ -24,7 +24,7 @@ int main(void) {
 	vector<Test::t>::iterator e = test.end();
 
 	while (b != e) {
-		cout << b->y << endl;
+		cout << b->getNbInst() << endl;
 		b++;
 	}
 
