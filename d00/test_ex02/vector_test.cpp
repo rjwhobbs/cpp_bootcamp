@@ -11,9 +11,9 @@ int main(void) {
 
 	cout << (dep_size) << endl;
 	cout << (dep) << endl;
-	// while (b != e) {
-	// 	cout << *b << endl;
-	// 	b++;
-	// }
+	while (b != e) {
+		cout << *b << endl;
+		b++;
+	}
 	return 0;
 }
