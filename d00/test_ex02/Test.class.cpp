@@ -16,8 +16,17 @@ Test::Test(int x) {
 	return ;
 }
 
+Test::Test(int x, int f) {
+	this->y = x;
+	this->z = f;
+	std::cout << "created " << this->y << " " <<  this->z << std::endl;
+	Test::_nbInst += 1;
+
+	return ;
+}
+
 Test::~Test(void) {
-	std::cout <<  Test::_nbInst <<" deleted" << std::endl;
+	std::cout <<  Test::_nbInst << " deleted" << std::endl;
 	Test::_nbInst -= 1;
 
 	return ;

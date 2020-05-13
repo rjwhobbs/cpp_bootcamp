@@ -6,9 +6,11 @@ class Test {
 
 		typedef Test t;
 		int y;
+		int z;
 
 		Test(void);
 		Test(int x);
+		Test(int x, int f);
 		~Test(void);
 
 		static int getNbInst(void);
