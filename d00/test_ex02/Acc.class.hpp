@@ -9,12 +9,16 @@ class Acc {
 		Acc(int initial_deposit);
 		~Acc(void);
 
+		void makeDeposit( int deposit );
+
 	private:
 
 		static int	_nbAccounts;
+		static int	_totalNbDeposits;
 
 		int _accountIndex;
 		int _amount;
+		int	_nbDeposits;
 
 		Acc(void);
 };
