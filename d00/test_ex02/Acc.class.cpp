@@ -40,6 +40,14 @@ void Acc::makeDeposit(int deposit) {
 	std::cout << "nb_deposits:" << this->_nbDeposits << std::endl;
 }
 
+bool Acc::makeWithdrawal(int withdrawal) {
+
+}
+
+int Acc::checkAmount(void) const {
+	
+}
+
 void Acc::displayStatus(void) const {
 	std::cout << "index:" << this->_accountIndex << ';';
 	std::cout << "amount:" << this->_amount << ';';
