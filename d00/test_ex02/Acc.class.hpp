@@ -9,7 +9,8 @@ class Acc {
 		Acc(int initial_deposit);
 		~Acc(void);
 
-		void makeDeposit( int deposit );
+		void makeDeposit(int deposit);
+		void displayStatus(void) const; 
 
 	private:
 
