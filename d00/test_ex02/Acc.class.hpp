@@ -10,16 +10,20 @@ class Acc {
 		~Acc(void);
 
 		void makeDeposit(int deposit);
+		bool makeWithdrawal(int withdrwal);
+		int checkAmount(void) const;
 		void displayStatus(void) const; 
 
 	private:
 
 		static int	_nbAccounts;
 		static int	_totalNbDeposits;
+		static int	_totalNbWithdrawals;
 
 		int _accountIndex;
 		int _amount;
 		int	_nbDeposits;
+		int	_nbWithdrawals;
 
 		Acc(void);
 };

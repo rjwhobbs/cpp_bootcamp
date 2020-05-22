@@ -15,7 +15,14 @@ int main(void) {
 
 	std::for_each(acc_begin, acc_end, std::mem_fun_ref(&Acc::displayStatus));
 
-	// accounts[1].makeDeposit(765);
+	(*acc_begin).makeDeposit(5);
+
+	std::for_each(acc_begin, acc_end, std::mem_fun_ref(&Acc::displayStatus));
+
+	(*acc_begin).makeWithdrawal(300);
+	(*(acc_begin + 1)).makeWithdrawal(10);
+
+	std::for_each(acc_begin, acc_end, std::mem_fun_ref(&Acc::displayStatus));
 
 	return 0;
 }
