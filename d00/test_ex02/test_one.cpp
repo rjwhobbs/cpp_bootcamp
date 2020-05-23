@@ -13,12 +13,6 @@ int main(void) {
 	accounts_t									accounts(amounts, amounts + amounts_size);
 	accounts_t::iterator				acc_begin(accounts.begin());
 	accounts_t::iterator				acc_end(accounts.end());
-	time_t											rawtime;
-	struct tm 									*timeinfo;
-
-	time(&rawtime);
-	timeinfo = localtime(&rawtime);
-	std::cout <<  timeinfo->tm_year << ":" << timeinfo->tm_mon << ":"<< timeinfo->tm_mday << ":" << timeinfo->tm_hour << ":" << timeinfo->tm_min << std::endl;
 
 	std::for_each(acc_begin, acc_end, std::mem_fun_ref(&Acc::displayStatus));
 

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <time.h>
 #include "Acc.class.hpp"
 
 Acc::Acc(int initial_deposit) 
@@ -9,6 +10,7 @@ Acc::Acc(int initial_deposit)
 	this->_nbWithdrawals = 0;
 	Acc::_nbAccounts += 1;
 
+	Acc::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ';';
 	std::cout << "amount:" << this->_amount << ';';
 	std::cout << "created" << std::endl;
@@ -24,6 +26,7 @@ Acc::Acc(void)
 	this->_nbWithdrawals = 0;
 	Acc::_nbAccounts += 1;
 
+	Acc::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ';';
 	std::cout << "amount:" << this->_amount << ';';
 	std::cout << "created" << std::endl;
@@ -38,6 +41,7 @@ void Acc::makeDeposit(int deposit)
 	this->_nbDeposits += 1;
 	Acc::_totalNbDeposits += 1;
 
+	Acc::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ';';
 	std::cout << "p_amount:" << p_amount << ';';
 	std::cout << "deposit:" << deposit << ';';
@@ -51,6 +55,7 @@ bool Acc::makeWithdrawal(int withdrawal)
 
 	if (withdrawal > this->checkAmount()) 
 	{
+		Acc::_displayTimestamp();
 		std::cout << "index:" << this->_accountIndex << ';';
 		std::cout << "p_amount:" << p_amount << ';';
 		std::cout << "withdrawal:refused" << std::endl;
@@ -63,6 +68,7 @@ bool Acc::makeWithdrawal(int withdrawal)
 		this->_nbWithdrawals += 1;
 		Acc::_totalNbWithdrawals += 1;
 
+		Acc::_displayTimestamp();
 		std::cout << "index:" << this->_accountIndex << ';';
 		std::cout << "p_amount:" << p_amount << ';';
 		std::cout << "withdrawal:" << withdrawal << ';';
@@ -72,6 +78,7 @@ bool Acc::makeWithdrawal(int withdrawal)
 		return true;
 	}
 
+	Acc::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ';';
 	std::cout << "p_amount:" << p_amount << ';';
 	std::cout << "withdrawal:refused" << std::endl;
@@ -86,6 +93,7 @@ int Acc::checkAmount(void) const
 
 void Acc::displayStatus(void) const 
 {
+	Acc::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ';';
 	std::cout << "amount:" << this->_amount << ';';
 	std::cout << "nb_deposits:" << this->_nbDeposits << ';';
@@ -99,6 +107,29 @@ Acc::~Acc(void)
 	std::cout << "closed" << std::endl;
 
 	return ;
+}
+
+void Acc::_displayTimestamp(void)
+{
+	time_t rawtime;
+	struct tm *timeinfo;
+	int year, month, day, hour, min, sec; 
+
+	time(&rawtime);
+	timeinfo = localtime(&rawtime);
+	year = timeinfo->tm_year + 1900;
+	month = timeinfo->tm_mon + 1;
+	day = timeinfo->tm_mday;
+	hour = timeinfo->tm_hour;
+	min = timeinfo->tm_hour;
+	sec = timeinfo->tm_sec;
+
+	std::cout << '[' << year;
+	month < 10 ? std::cout << '0' << month : std::cout << month;
+	day < 10 ? std::cout << '0' << day : std::cout << day;
+	hour < 10 ? std::cout << "_0" << hour : std::cout << '_' << hour;
+	min < 10 ? std::cout << '0' << hour : std::cout << min;
+	sec < 10 ? std::cout << '0' << sec << "] ": std::cout << sec << "] ";
 }
 
 int Acc::_nbAccounts = 0;
