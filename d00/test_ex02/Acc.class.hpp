@@ -7,6 +7,8 @@ class Acc {
 		typedef Acc t;
 
 		static int getNbAccounts(void);
+		static int getNbDeposits(void);
+		static int getNbWithdrawals(void);
 		static int getTotalAmount(void);
 		static void displayAccountsInfos(void);
 

@@ -100,17 +100,29 @@ int Acc::getNbAccounts(void) {
 	return Acc::_nbAccounts;
 }
 
+int Acc::getNbDeposits(void) {
+	return Acc::_totalNbDeposits;
+}
+
 int Acc::getTotalAmount(void) {
 	return Acc::_totalAmount;
+}
+
+int Acc::getNbWithdrawals(void) {
+	return Acc::_totalNbWithdrawals;
 }
 
 void Acc::displayAccountsInfos(void) {
 	int accounts = Acc::getNbAccounts();
 	int total = Acc::getTotalAmount();
+	int deposits = Acc::getNbDeposits();
+	int withdrawals = Acc::getNbWithdrawals();
 
 	Acc::_displayTimestamp();
 	std::cout << "accounts:" << accounts << ';';
-	std::cout << "total:" << total << std::endl;
+	std::cout << "total:" << total << ';';
+	std::cout << "deposits:" << deposits << ';';
+	std::cout << "withdrawals:" << withdrawals << std::endl;
 }
 
 void Acc::displayStatus(void) const {
