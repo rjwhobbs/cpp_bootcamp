@@ -1,10 +1,10 @@
 #ifndef ACC_CLASS_HPP
 #define ACC_CLASS_HPP
 
-class Acc {
+class Account {
 	public:
 
-		typedef Acc t;
+		typedef Account t;
 
 		static int getNbAccounts(void);
 		static int getNbDeposits(void);
@@ -12,8 +12,8 @@ class Acc {
 		static int getTotalAmount(void);
 		static void displayAccountsInfos(void);
 
-		Acc(int initial_deposit);
-		~Acc(void);
+		Account(int initial_deposit);
+		~Account(void);
 
 		void makeDeposit(int deposit);
 		bool makeWithdrawal(int withdrwal);
@@ -34,7 +34,7 @@ class Acc {
 		int	_nbDeposits;
 		int	_nbWithdrawals;
 
-		Acc(void);
+		Account(void);
 };
 
 #endif

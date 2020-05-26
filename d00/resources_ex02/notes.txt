@@ -1,0 +1,2 @@
+To cut out the timestamps to diff the outputs
+cut -c19-100 19920104_091532.log > cutlog.txt
