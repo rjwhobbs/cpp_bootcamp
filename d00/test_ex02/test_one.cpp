@@ -14,15 +14,18 @@ int main(void) {
 	accounts_t::iterator				acc_begin(accounts.begin());
 	accounts_t::iterator				acc_end(accounts.end());
 
+	Acc::displayAccountsInfos();
 	std::for_each(acc_begin, acc_end, std::mem_fun_ref(&Acc::displayStatus));
 
 	(*acc_begin).makeDeposit(5);
 
+	Acc::displayAccountsInfos();
 	std::for_each(acc_begin, acc_end, std::mem_fun_ref(&Acc::displayStatus));
 
 	(*acc_begin).makeWithdrawal(300);
 	(*(acc_begin + 1)).makeWithdrawal(10);
 
+	Acc::displayAccountsInfos();
 	std::for_each(acc_begin, acc_end, std::mem_fun_ref(&Acc::displayStatus));
 
 	return 0;

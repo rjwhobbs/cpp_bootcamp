@@ -6,6 +6,10 @@ class Acc {
 
 		typedef Acc t;
 
+		static int getNbAccounts(void);
+		static int getTotalAmount(void);
+		static void displayAccountsInfos(void);
+
 		Acc(int initial_deposit);
 		~Acc(void);
 
@@ -16,9 +20,10 @@ class Acc {
 
 	private:
 
-		static int	_nbAccounts;
-		static int	_totalNbDeposits;
-		static int	_totalNbWithdrawals;
+		static int _nbAccounts;
+		static int _totalAmount;
+		static int _totalNbDeposits;
+		static int _totalNbWithdrawals;
 
 		static void _displayTimestamp(void);
 
