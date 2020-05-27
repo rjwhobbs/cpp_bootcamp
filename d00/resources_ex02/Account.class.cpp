@@ -34,6 +34,7 @@ Account::Account(void) {
 }
 
 Account::~Account(void) {
+	Account::_nbAccounts -= 1;
 	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ';';
 	std::cout << "amount:" << this->_amount << ';';
