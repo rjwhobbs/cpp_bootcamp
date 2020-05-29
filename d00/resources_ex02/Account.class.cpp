@@ -6,13 +6,15 @@
 Account::Account(int initial_deposit) {
 
 	std::string errorMsg;
+	bool state;
 
-	if (initial_deposit < 0 ||
-			Account::_totalAmount + initial_deposit < 0
-		) {
+	if (initial_deposit < 0 || Account::_totalAmount + initial_deposit < 0) {
 		initial_deposit = 0;
 		errorMsg = "error:Initial deposit refused.";
-	} 
+		state = false;
+	} else {
+		state = true;
+	}
 
 	this->_amount = initial_deposit;
 	this->_accountIndex = Account::_nbAccounts;
@@ -26,7 +28,7 @@ Account::Account(int initial_deposit) {
 	std::cout << "index:" << this->_accountIndex << ';';
 	std::cout << "amount:" << this->_amount << ';';
 	
-	if (errorMsg.empty()) {
+	if (state) {
 		std::cout << "created" << std::endl; 
 	} else {
 		std::cout << "created;" << errorMsg << std::endl; 
@@ -63,66 +65,69 @@ Account::~Account(void) {
 void Account::makeDeposit(int deposit) {
 
 	std::string errorMsg;
+	bool state;
 
 	if (deposit < 1) {
 		deposit = 0;
 		errorMsg = "refused";
+		state = false;
+	} else {
+		state = true;
 	}
 
 	int p_amount = this->_amount;
 	this->_amount += deposit;
 	Account::_totalAmount += deposit;
 
-	errorMsg.empty()? this->_nbDeposits += 1: this->_nbDeposits += 0;
-	errorMsg.empty()? Account::_totalNbDeposits += 1: Account::_totalNbDeposits += 0;
+	state? this->_nbDeposits += 1: this->_nbDeposits += 0;
+	state? Account::_totalNbDeposits += 1: Account::_totalNbDeposits += 0;
 
 	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ';';
 	std::cout << "p_amount:" << p_amount << ';';
 
-	if (errorMsg.empty()) {
+	if (state) {
 		std::cout << "deposit:" << deposit << ';';
+		std::cout << "amount:" << this->_amount << ';';
+		std::cout << "nb_deposits:" << this->_nbDeposits << std::endl;
 	} else {
-		std::cout << "deposit:" << errorMsg << ';';
+		std::cout << "deposit:" << errorMsg << std::endl;
 	}
-
-	std::cout << "amount:" << this->_amount << ';';
-	std::cout << "nb_deposits:" << this->_nbDeposits << std::endl;
 }
 
 bool Account::makeWithdrawal(int withdrawal) {
-	int p_amount = this->_amount;
 
-	if (withdrawal > this->checkAmount()) {
-		Account::_displayTimestamp();
-		std::cout << "index:" << this->_accountIndex << ';';
-		std::cout << "p_amount:" << p_amount << ';';
-		std::cout << "withdrawal:refused" << std::endl;
+	std::string errorMsg;
+	bool state;
 
-		return false;
-
-	} else if (withdrawal > 0) {
-		this->_amount -= withdrawal;
-		this->_nbWithdrawals += 1;
-		Account::_totalAmount -= withdrawal;
-		Account::_totalNbWithdrawals += 1;
-
-		Account::_displayTimestamp();
-		std::cout << "index:" << this->_accountIndex << ';';
-		std::cout << "p_amount:" << p_amount << ';';
-		std::cout << "withdrawal:" << withdrawal << ';';
-		std::cout << "amount:" << this->_amount << ';';
-		std::cout << "nb_withdrawals:" << this->_nbWithdrawals << std::endl;
-
-		return true;
+	if (withdrawal > this->checkAmount() || withdrawal < 1 ) {
+		errorMsg = "refused";
+		withdrawal = 0;
+		state = false;
+	} else {
+		state = true;
 	}
+
+	int p_amount = this->_amount;
+	this->_amount -= withdrawal;
+	Account::_totalAmount -= withdrawal;
+
+	state? this->_nbWithdrawals += 1: this->_nbWithdrawals += 0;
+	state? Account::_totalNbWithdrawals += 1: Account::_totalNbWithdrawals += 0;
 
 	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ';';
 	std::cout << "p_amount:" << p_amount << ';';
-	std::cout << "withdrawal:refused" << std::endl;
 
-	return false;
+	if (state) {
+		std::cout << "withdrawal:" << withdrawal << ';';
+		std::cout << "amount:" << this->_amount << ';';
+		std::cout << "nb_withdrawals:" << this->_nbWithdrawals << std::endl;
+	} else {
+		std::cout << "withdrawal:" << errorMsg << std::endl;
+	}
+
+	return state;
 }
 
 int Account::checkAmount(void) const {
