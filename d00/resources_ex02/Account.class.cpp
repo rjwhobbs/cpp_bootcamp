@@ -1,24 +1,36 @@
 #include <iostream>
 #include <time.h>
+#include <string>
 #include "Account.class.hpp"
 
 Account::Account(int initial_deposit) {
 
-	if (initial_deposit < 0) {
+	std::string errorMsg;
+
+	if (initial_deposit < 0 ||
+			Account::_totalAmount + initial_deposit < 0
+		) {
 		initial_deposit = 0;
+		errorMsg = "error: Initial deposit not taken.";
 	} 
 
 	this->_amount = initial_deposit;
 	this->_accountIndex = Account::_nbAccounts;
 	this->_nbDeposits = 0;
 	this->_nbWithdrawals = 0;
+	
 	Account::_totalAmount += initial_deposit;
 	Account::_nbAccounts += 1;
 
 	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ';';
 	std::cout << "amount:" << this->_amount << ';';
-	std::cout << "created" << std::endl;
+	
+	if (errorMsg.empty()) {
+		std::cout << "created" << std::endl; 
+	} else {
+		std::cout << "created;" << errorMsg << std::endl; 
+	}
 
 	return ;
 }
