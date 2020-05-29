@@ -11,7 +11,7 @@ Account::Account(int initial_deposit) {
 			Account::_totalAmount + initial_deposit < 0
 		) {
 		initial_deposit = 0;
-		errorMsg = "error: Initial deposit not taken.";
+		errorMsg = "error:Initial deposit refused.";
 	} 
 
 	this->_amount = initial_deposit;
@@ -61,16 +61,31 @@ Account::~Account(void) {
 }
 
 void Account::makeDeposit(int deposit) {
+
+	std::string errorMsg;
+
+	if (deposit < 1) {
+		deposit = 0;
+		errorMsg = "refused";
+	}
+
 	int p_amount = this->_amount;
 	this->_amount += deposit;
-	this->_nbDeposits += 1;
 	Account::_totalAmount += deposit;
-	Account::_totalNbDeposits += 1;
+
+	errorMsg.empty()? this->_nbDeposits += 1: this->_nbDeposits += 0;
+	errorMsg.empty()? Account::_totalNbDeposits += 1: Account::_totalNbDeposits += 0;
 
 	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ';';
 	std::cout << "p_amount:" << p_amount << ';';
-	std::cout << "deposit:" << deposit << ';';
+
+	if (errorMsg.empty()) {
+		std::cout << "deposit:" << deposit << ';';
+	} else {
+		std::cout << "deposit:" << errorMsg << ';';
+	}
+
 	std::cout << "amount:" << this->_amount << ';';
 	std::cout << "nb_deposits:" << this->_nbDeposits << std::endl;
 }

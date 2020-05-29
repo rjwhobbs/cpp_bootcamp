@@ -10,6 +10,10 @@ int main(void) {
 	//I are breaking your accounts 
 	Account::t account_one(2147483647);
 	Account::t account_two(1);
+	account_one.makeWithdrawal(10000);
+	Account::t account_three(1);
+	account_one.makeDeposit(-100);
+	account_one.makeDeposit(100);
 	// accounts:2;total:-2147483648;deposits:0;withdrawals:0
 	// Account::t account_three(1000000000);
 	Account::displayAccountsInfos();
