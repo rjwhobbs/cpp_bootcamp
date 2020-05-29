@@ -3,6 +3,11 @@
 #include "Account.class.hpp"
 
 Account::Account(int initial_deposit) {
+
+	if (initial_deposit < 0) {
+		initial_deposit = 0;
+	} 
+
 	this->_amount = initial_deposit;
 	this->_accountIndex = Account::_nbAccounts;
 	this->_nbDeposits = 0;
