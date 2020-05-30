@@ -34,7 +34,6 @@ class TestTwo: public TestOne
 {
 public:
 	TestTwo();
-	
 };
 
 TestTwo::TestTwo(void) : TestOne(65, 54)

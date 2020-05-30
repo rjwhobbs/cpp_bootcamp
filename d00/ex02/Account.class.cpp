@@ -3,7 +3,7 @@
 #include <string>
 #include "Account.class.hpp"
 
-Account::Account(int initial_deposit) {
+Account::Account(int initial_deposit) : _nbDeposits(0), _nbWithdrawals(0) {
 
 	std::string errorMsg;
 	bool state;
@@ -18,8 +18,6 @@ Account::Account(int initial_deposit) {
 
 	this->_amount = initial_deposit;
 	this->_accountIndex = Account::_nbAccounts;
-	this->_nbDeposits = 0;
-	this->_nbWithdrawals = 0;
 	
 	Account::_totalAmount += initial_deposit;
 	Account::_nbAccounts += 1;
@@ -37,11 +35,8 @@ Account::Account(int initial_deposit) {
 	return ;
 }
 
-Account::Account(void) {
-	this->_amount = 0;
+Account::Account(void) : _amount(0), _nbDeposits(0), _nbWithdrawals(0) {
 	this->_accountIndex = Account::_nbAccounts;
-	this->_nbDeposits = 0;
-	this->_nbWithdrawals = 0;
 	Account::_nbAccounts += 1;
 
 	Account::_displayTimestamp();
