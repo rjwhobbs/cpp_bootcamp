@@ -11,7 +11,9 @@ int	main(void)
 	ifs >> i >> j;
 
 	// This seperates by white space
-	cout << i << '\n' << j << endl; // 345345 , 987789
+	// so streams do some kind of type conversions? 
+	// ie 9877sdf89d becomes 9877
+	cout << i << '\n' << j << endl; // 345345 , 9877
 	ifs.close();
 	return 0;
 }
