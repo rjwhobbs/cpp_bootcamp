@@ -10,6 +10,8 @@ int	main(void)
 	int j;
 	ifs >> i >> j;
 
+	// This seperates by white space
 	cout << i << '\n' << j << endl; // 345345 , 987789
+	ifs.close();
 	return 0;
 }
