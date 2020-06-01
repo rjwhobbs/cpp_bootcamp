@@ -14,6 +14,18 @@ Pony::~Pony(void)
 	return ;
 }
 
+void Pony::feedPony(std::string food) const
+{
+	if (food == "hamburger" || food == "Hamburger")
+	{
+		std::cout << "Yummy!" << std::endl;
+	}
+	else
+	{
+		std::cout << "Yuck, what is this..." << std::endl;
+	}
+}
+
 std::string Pony::getName(void) const
 {
 	return this->_ponyName;

@@ -9,6 +9,7 @@ public:
 	~Pony();
 
 	std::string getName(void) const;
+	void feedPony(std::string food) const;
 
 private:
 	std::string const _ponyName;

@@ -1,15 +1,18 @@
+#include <iostream>
 #include "Pony.hpp"
 
 void ponyOnStack(void) 
 {
 	Pony pony("Joe");
-	pony.getName();
+	std::cout <<  pony.getName() << std::endl;
+	pony.feedPony("Hamburger"); 
 }
 
 void ponyOnHeap(void)
 {
 	Pony* pony  = new Pony("Stuart");
-	pony->getName(); 
+	std::cout <<  pony->getName() << std::endl;
+	pony->feedPony("Cheese");
 	delete pony;
 }
 
