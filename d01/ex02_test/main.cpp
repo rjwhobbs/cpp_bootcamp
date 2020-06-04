@@ -8,6 +8,10 @@ int random_index(int max) {
 	sranddev();
 	int ranNum = rand() % max;
 
+	if (ranNum < -1) {
+		ranNum *= -1;
+	}
+
 	return ranNum;
 }
 
@@ -16,23 +20,47 @@ std::string zombieNameGen(int index) {
 		"Steve", "Donald Trump", "Micheal J. Fox", "Lillian", "X",
 		"Barbara", "Zoe", "The Dude", "Default Name", "The President of Cheese"};
 
-	return names[index];
+	if (index >= 0 && index < 10){
+		return names[index];
+	} else {
+		return names[0];
+	}
 }
 
 void randomChump(void) {
-	Zombie randomZombie("stack Zombie", zombieNameGen(random_index(10)));
+	Zombie randomZombie("stack", zombieNameGen(random_index(10)));
 	randomZombie.announce();
 }
 
 int main(void) {
-	ZombieEvent betterThanAverageZombieEvent;
-	betterThanAverageZombieEvent.setZombieType("better than average");
-	Zombie* joe = betterThanAverageZombieEvent.newZombie("Joe");
-	Zombie* steve = betterThanAverageZombieEvent.newZombie("Steve");
-	joe->announce();
-	steve->announce();
+	ZombieEvent heapZombie;
+
+	heapZombie.setZombieType("heap");
+	Zombie* joe = heapZombie.newZombie("Joe");
+	Zombie* steve = heapZombie.newZombie("Steve");
+	Zombie* randomZombie = heapZombie.newZombie(zombieNameGen(random_index(10)));
+
+	if (joe && steve && randomZombie) {
+		joe->announce();
+		steve->announce();
+		randomZombie->announce();
+	} else {
+		std::cerr << "Looks like we had a problem allocating one or more of your zombies"
+		<< std::endl;
+	}
+
 	randomChump();
-	delete joe;
-	delete steve;
+	randomChump();
+
+	if (joe) {
+		delete joe;
+	}
+	if (steve) {
+		delete steve;
+	}
+	if (randomZombie) {
+		delete randomZombie;
+	}
+
 	return 0;
 }

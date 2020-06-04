@@ -16,6 +16,6 @@ void ZombieEvent::setZombieType(std::string type) {
 }
 
 Zombie* ZombieEvent::newZombie(std::string name) {
-	Zombie* freshZombie = new Zombie(this->_type, name); 
+	Zombie* freshZombie = new(std::nothrow) Zombie(this->_type, name); 
 	return freshZombie;
 }
