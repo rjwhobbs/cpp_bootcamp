@@ -1,16 +1,18 @@
 #ifndef HUMAN_HPP
 #define HUMAN_HPP
+#include <string>
 #include "Brain.hpp"
 
-class Human : public Brain {
+class Human {
 	
-	Brain const brain;
+	Brain* brain;
 
 	public:
 		Human(void);
 	 	~Human(void);
 
-		Brain getBrain(void) const;
+		std::string identify(void) const;
+		Brain* getBrain(void) const;
 };
 
 #endif

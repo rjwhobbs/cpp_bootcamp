@@ -12,6 +12,10 @@ Human::~Human(void) {
 	return ;
 }
 
-Brain Human::getBrain(void) const {
+std::string Human::identify(void) const {
+	return this->brain->identify();
+}
+
+Brain* Human::getBrain(void) const {
 	return this->brain;
 }
