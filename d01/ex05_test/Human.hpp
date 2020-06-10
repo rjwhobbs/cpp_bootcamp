@@ -3,16 +3,16 @@
 #include <string>
 #include "Brain.hpp"
 
-class Human {
+class Human : public Brain {
 	
-	Brain* brain;
+	Brain const brain;
 
 	public:
 		Human(void);
 	 	~Human(void);
 
 		std::string identify(void) const;
-		Brain* getBrain(void) const;
+		Brain getBrain(void);
 };
 
 #endif

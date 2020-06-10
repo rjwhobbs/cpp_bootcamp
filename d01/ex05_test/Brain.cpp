@@ -3,6 +3,7 @@
 #include "Brain.hpp"
 
 Brain::Brain(void) {
+	this->_humanAddress = "potato";
 	return ;
 }
 
@@ -14,7 +15,7 @@ std::string Brain::identify(void) const {
 	std::stringstream addressStream;
 	std::string address;
 
-	addressStream << this;
+	addressStream << &(this->_humanAddress);
 	address = addressStream.str();
 
 	return address;

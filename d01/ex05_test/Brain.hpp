@@ -12,7 +12,7 @@ class Brain {
 		std::string identify(void) const;
 
 	private:
-		std::string humanAddress;
+		std::string _humanAddress;
 };
 
 #endif
