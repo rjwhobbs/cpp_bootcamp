@@ -15,7 +15,7 @@ std::string Brain::identify(void) const {
 	std::stringstream addressStream;
 	std::string address;
 
-	addressStream << &(this->_humanAddress);
+	addressStream << this;
 	address = addressStream.str();
 
 	return address;

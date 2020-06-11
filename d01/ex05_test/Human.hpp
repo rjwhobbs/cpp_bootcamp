@@ -4,15 +4,17 @@
 #include "Brain.hpp"
 
 class Human : public Brain {
-	
-	Brain const brain;
 
 	public:
-		Human(void);
+		Human();
 	 	~Human(void);
 
 		std::string identify(void) const;
-		Brain getBrain(void);
+		Brain& getBrain(void);
+
+	private:
+		Brain brain;
+
 };
 
 #endif

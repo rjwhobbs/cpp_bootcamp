@@ -4,8 +4,7 @@
 #include "Brain.hpp"
 #include "Human.hpp"
 
-Human::Human(void) {
-	// brain = this->getBrain();
+Human::Human() {
 	return ;
 }
 
@@ -18,7 +17,7 @@ std::string Human::identify(void) const {
 	return this->brain.identify();
 }
 
-Brain Human::getBrain(void) {
+Brain& Human::getBrain(void) {
 	// std::cout << "gb" << this->brain.identify() << std::endl;
 	return this->brain;
 }
