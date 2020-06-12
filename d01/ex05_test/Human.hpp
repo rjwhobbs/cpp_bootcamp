@@ -11,9 +11,11 @@ class Human : public Brain {
 
 		std::string identify(void) const;
 		Brain& getBrain(void);
+		int getX(void);
 
 	private:
 		Brain _brain;
+		int _x;
 
 };
 
