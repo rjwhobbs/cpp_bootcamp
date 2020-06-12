@@ -13,7 +13,7 @@ class Human : public Brain {
 		Brain& getBrain(void);
 
 	private:
-		Brain brain;
+		Brain _brain;
 
 };
 

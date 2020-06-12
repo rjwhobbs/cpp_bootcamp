@@ -14,10 +14,10 @@ Human::~Human(void) {
 
 std::string Human::identify(void) const {
 	// std::cout << "H i" << this << std::endl;
-	return this->brain.identify();
+	return this->_brain.identify();
 }
 
 Brain& Human::getBrain(void) {
 	// std::cout << "gb" << this->brain.identify() << std::endl;
-	return this->brain;
+	return this->_brain;
 }

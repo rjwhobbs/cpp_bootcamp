@@ -5,19 +5,10 @@
 #include "Brain.hpp"
 
 int main(void) {
-	Human human;
-	Brain brain;
-	// std::cout << brain.identify() << std::endl;
-	// std::cout << &brain << std::endl;
-	// std::cout << human.getBrain().identify() << std::endl;
-	// std::cout << human.getBrain().identify() << std::endl;
-	std::cout << human.getBrain().identify() << std::endl;
-	std::cout << human.getBrain().identify() << std::endl;
-	std::cout << human.getBrain().identify() << std::endl;
-	std::cout << human.identify() << std::endl;
-	std::cout << human.identify() << std::endl;
-	std::cout << human.identify() << std::endl;
-	std::cout << human.identify() << std::endl;
-	std::cout << human.identify() << std::endl;
+	Human bob;
+	
+	std::cout << bob.identify() << std::endl;
+	std::cout << bob.getBrain().identify() << std::endl;
 
+	return 0;
 }
