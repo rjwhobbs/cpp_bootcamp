@@ -11,15 +11,16 @@ void f(Weapon& w) {
 
 int main(void) {
 	{
-		Weapon w = Weapon("club");
+		Weapon w = Weapon("ray gun");
 		HumanA bob("bob", w);
 		bob.attack();
-		w.setType("potato");
+		w.setType("Tomato");
 		bob.attack();
 	}
 	{
 		Weapon w = Weapon("club");
-		HumanB jim("jim");
+		HumanB jim = HumanB("jim");
+		jim.attack();
 		jim.setWeapon(w);
 		jim.attack();
 		w.setType("potato");
