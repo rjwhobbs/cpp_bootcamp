@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include "HumanA.hpp"
+#include "HumanB.hpp"
 #include "Weapon.hpp"
 
 void f(Weapon& w) {
@@ -8,10 +10,20 @@ void f(Weapon& w) {
 }
 
 int main(void) {
-	Weapon w = Weapon("club");
-
-	std::cout << w.getType() << std::endl;
-	f(w);
-	std::cout << w.getType() << std::endl;
+	{
+		Weapon w = Weapon("club");
+		HumanA bob("bob", w);
+		bob.attack();
+		w.setType("potato");
+		bob.attack();
+	}
+	{
+		Weapon w = Weapon("club");
+		HumanB jim("jim");
+		jim.setWeapon(w);
+		jim.attack();
+		w.setType("potato");
+		jim.attack();
+	}
 	return 0;
 }
