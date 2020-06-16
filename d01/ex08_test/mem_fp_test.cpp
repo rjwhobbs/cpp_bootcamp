@@ -11,10 +11,10 @@ class Test {
 		~Test(void) {}
 
 		void showValue(void) {
-			int (Test::*getXPtr)();
-			getXPtr = &Test::_getX;
+			typedef int (Test::*APtr)();
+			APtr gptr[] = {&Test::_getX, &Test::_getY};
 
-			cout << (this->*getXPtr)() << endl;
+			cout << (this->*gptr[0])() << endl;
 		}
 
 	private:
