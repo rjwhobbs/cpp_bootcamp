@@ -10,11 +10,19 @@ class Test {
 		Test(int x, int y) : _x(x), _y(y) {}
 		~Test(void) {}
 
-		void showValue(void) {
-			typedef int (Test::*APtr)();
-			APtr gptr[] = {&Test::_getX, &Test::_getY};
-
-			cout << (this->*gptr[0])() << endl;
+		void showValue(string option) {
+			string options[] = {"getX", "getY"};
+			int (Test::*gptr[])() = {&Test::_getX, &Test::_getY};
+			// typedef int (Test::*APtr)();
+			// APtr gptr[] = {&Test::_getX, &Test::_getY};
+			
+			int i = 0;
+			while (i < 2) {
+				if (options[i] == option) {
+					cout << (this->*gptr[i])() << endl;
+				}
+				i++;
+			}			
 		}
 
 	private:
@@ -30,5 +38,8 @@ class Test {
 
 int main(void) {
 	Test t(55, 44);
-	t.showValue();
+	t.showValue("getX");
+	t.showValue("getY");
+
+	return 0;
 }
