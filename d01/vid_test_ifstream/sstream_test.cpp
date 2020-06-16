@@ -15,6 +15,8 @@ int main(void)
 
 	cout << foo << endl;
 	cout << bar << endl;
+	// 12
+	// 78
 
 	return 0;
 }
