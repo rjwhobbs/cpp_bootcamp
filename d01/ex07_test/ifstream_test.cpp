@@ -1,21 +1,37 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include <cctype>
 
-using namespace std;
+bool isNonWord(char c) {
+	if (!isalnum(c) && c != '_') {
+		return true;
+	}
+	return false;
+}
 
 int main(void) {
-	stringstream strs;
-	string s1;
-	string s2;
-	ifstream ifs("test.txt");
-	ifs.seekg(5);
+	std::string find = "me";
+	std::string replace = "thmeis";
+	std::stringstream streamBuf;
+	std::string tempStr;
+	std::ifstream ifs("test.txt");
 
-	ifs >> s1 >> s2;
-	cout << s1 << s2 << endl;
-	// strs << ifs.rdbuf();
-	// cout << strs.str();
+	streamBuf << ifs.rdbuf();
+	tempStr = streamBuf.str();
+
+	size_t pos = tempStr.find(find, 0);
+	while (pos != std::string::npos) {
+		tempStr.replace(pos, find.length(), replace);
+		pos = tempStr.find(find, pos + replace.length());
+	}
+
+	std::cout << tempStr << std::endl;
+
+
+	// std::ofstream ofs("");
 
 	ifs.close();
+	// ofs.close();
 	return 0;
 }
