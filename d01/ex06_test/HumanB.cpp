@@ -25,7 +25,7 @@ void HumanB::attack() const {
 	if (this->_weapon) {
 		weapon = this->_weapon->getType();
 	}
-	
+
 	std::cout 
 		<< this->_name 
 		<< " attacks with his " 
