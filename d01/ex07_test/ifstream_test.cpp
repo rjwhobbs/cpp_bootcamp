@@ -11,15 +11,19 @@ bool isNonWord(char c) {
 	return false;
 }
 
-int main(void) {
+int main(int ac, char* av[]) {
+	if (ac < 4) {
+		return EXIT_FAILURE;
+	}
+	
 	std::string find = "me";
 	std::string replace = "thmeis";
 	std::stringstream streamBuf;
 	std::string tempStr;
-	std::ifstream ifs("test.txt");
+	std::ifstream ifs("test.txt", std::ifstream::out);
 
 	if (ifs.fail()) {
-		std::cerr << "Error reading file.\nEnsure that the path is correct and that you have permission to read and write to it." << std::endl;
+		std::cerr << "Error reading file.\nEnsure that the path is correct and that you have the correct permissions." << std::endl;
 		return EXIT_FAILURE;
 	}
 
