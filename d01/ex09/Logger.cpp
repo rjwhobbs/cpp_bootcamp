@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <fstream>
 #include "Logger.hpp"
 
 Logger::Logger(std::string const filename)
@@ -12,13 +13,43 @@ Logger::~Logger(void) {
 	return ;
 }
 
+void Logger::log(const std::string &dest, const std::string &message) const {
+	std::string logFuncsNames[] = {"console", "file"};
+	void (Logger::*logMems[])(std::string const message) const = {
+		&Logger::logToConsole,
+		&Logger::logToFile};
+	
+	int i = 0;
+	while (i < 2) {
+		if (logFuncsNames[i] == dest) {
+			(this->*logMems[i])(message);
+			return ;
+		}
+		i++;
+	}
+}
+
 void Logger::logToConsole(const std::string message) const {
-	std::cout << this->makeLogEntry("word") << std::endl;
+	std::cout << this->makeLogEntry(message) << std::endl;
+}
+
+void Logger::logToFile(const std::string message) const {
+	std::ofstream ofs(this->_filename, std::ofstream::app);
+
+	if(ofs.fail()) {
+		std::cerr << "Error opening/creating log file: " 
+			<< this->_filename    
+			<< "\nEnsure that the path is correct and that you have correct permissions." 
+			<< std::endl;
+		return ;
+	}
+
+	ofs << this->makeLogEntry(message);
+	ofs << std::endl;
 }
 
 std::string Logger::makeLogEntry(const std::string message) const {
 	std::stringstream logDate;
-	char buff[10];
 	time_t rawtime;
 	struct tm *timeinfo;
 	int year, month, day, hour, min, sec; 
@@ -38,6 +69,8 @@ std::string Logger::makeLogEntry(const std::string message) const {
 	hour < 10 ? logDate << "_0" << hour : logDate << '_' << hour;
 	min < 10 ? logDate << '0' << hour : logDate << min;
 	sec < 10 ? logDate << '0' << sec << "] ": logDate << sec << "] ";
+
+	logDate << message;
 
 	return logDate.str();
 }
