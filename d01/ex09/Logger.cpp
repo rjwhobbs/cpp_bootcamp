@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <sstream>
 #include "Logger.hpp"
 
 Logger::Logger(std::string const filename)
@@ -16,7 +17,8 @@ void Logger::logToConsole(const std::string message) const {
 }
 
 std::string Logger::makeLogEntry(const std::string message) const {
-	std::string logDate;
+	std::stringstream logDate;
+	char buff[10];
 	time_t rawtime;
 	struct tm *timeinfo;
 	int year, month, day, hour, min, sec; 
@@ -30,17 +32,12 @@ std::string Logger::makeLogEntry(const std::string message) const {
 	min = timeinfo->tm_min;
 	sec = timeinfo->tm_sec;
 
-	logDate = '[' + std::to_string(year);
-	month < 10 ? logDate += ('0' +  std::to_string(month)) : 
-		logDate += std::to_string(month);
-	day < 10 ? logDate += ('0' + std::to_string(day)) : 
-		logDate += std::to_string(day);
-	hour < 10 ? logDate += ("_0" + std::to_string(hour)) : 
-		logDate += ('_' + std::to_string(hour));
-	min < 10 ? logDate += ('0' + std::to_string(min)) : 
-		logDate += std::to_string(min);
-	sec < 10 ? logDate += ('0' + std::to_string(sec) +  "] ") : 
-		logDate += (std::to_string(sec) + "] ");
+	logDate << '[' << year;
+	month < 10 ? logDate << '0' << month : logDate << month;
+	day < 10 ? logDate << '0' << day : logDate << day;
+	hour < 10 ? logDate << "_0" << hour : logDate << '_' << hour;
+	min < 10 ? logDate << '0' << hour : logDate << min;
+	sec < 10 ? logDate << '0' << sec << "] ": logDate << sec << "] ";
 
-	return logDate;
+	return logDate.str();
 }
