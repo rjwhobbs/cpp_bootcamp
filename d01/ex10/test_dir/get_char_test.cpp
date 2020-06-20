@@ -25,18 +25,19 @@ void checkAccess(char *file) {
 	std::string error;
 	struct stat checkFile; 
 
-	if (access(file, R_OK) && !access(file, F_OK)) {
-		error = "ft_cat: ";
-		error += file;
-		error += ": Permission denied"; 
-		std::cout << error << std::endl;
-		return ;
-	}
 
 	if (access(file, F_OK)) {
 		error = "ft_cat: ";
 		error += file;
 		error += ": No such file or directory"; 
+		std::cout << error << std::endl;
+		return ;
+	}
+
+	if (access(file, R_OK)) {
+		error = "ft_cat: ";
+		error += file;
+		error += ": Permission denied"; 
 		std::cout << error << std::endl;
 		return ;
 	}
@@ -84,5 +85,5 @@ int main(int ac, char* av[]) {
 		i++;
 	}
 
-	return EXIT_SUCCESS;
+	return 0;
 }
