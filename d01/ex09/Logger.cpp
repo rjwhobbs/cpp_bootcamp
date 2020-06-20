@@ -17,7 +17,8 @@ void Logger::log(const std::string &dest, const std::string &message) const {
 	std::string logFuncsNames[] = {"console", "file"};
 	void (Logger::*logMems[])(std::string const message) const = {
 		&Logger::logToConsole,
-		&Logger::logToFile};
+		&Logger::logToFile
+	};
 	
 	int i = 0;
 	while (i < 2) {
