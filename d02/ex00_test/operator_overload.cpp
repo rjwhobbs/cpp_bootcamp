@@ -55,29 +55,28 @@ std::ostream& operator<<(std::ostream& o, Interger const& rhs) {
 	return o;
 }
 
-class Test {
-	public:
-		Test(int x, int y) : x(x) , y(y) {};
-
-		int x;
-		int y;
-};
-
-
 int main(void) {
 
 	Interger x(7);
 	Interger y(8);
 	Interger z(9);
 
-	std::cout << "x " << x << std::endl;
-	std::cout << "y " << y << std::endl;
-	std::cout << "z " << z << std::endl;
+	Interger a = z.operator+(y); 
+	// a = z + y;
+	std::cout << a << std::endl;
 
-	y = 99;
-	std::cout  << (z + 42) << std::endl;
+	// Interger c = a + x;
+	// std::cout << c << std::endl;
 
-	std::cout << "y " << y << std::endl;
+
+	// std::cout << "x " << x << std::endl;
+	// std::cout << "y " << y << std::endl;
+	// std::cout << "z " << z << std::endl;
+
+	// y = 99;
+	// std::cout  << (z + 42) << std::endl;
+
+	// std::cout << "y " << y << std::endl;
 
 	return 0;
 }
