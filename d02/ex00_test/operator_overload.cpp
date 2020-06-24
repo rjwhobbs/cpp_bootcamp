@@ -57,13 +57,21 @@ std::ostream& operator<<(std::ostream& o, Interger const& rhs) {
 
 int main(void) {
 
-	Interger x(7);
-	Interger y(8);
-	Interger z(9);
+	Interger x(1);
+	Interger y(2);
+	Interger z(3);
 
-	Interger a = z.operator+(y); 
-	// a = z + y;
+	// int e = 2;
+	// int f = 3;
+	// int g = 4;
+
+	//Interger a = z.operator+(y); 
+	// Interger a = z + y;
+	Interger a = x.operator+(y.operator+(z)); 
+	// Interger a = x + y + z;
 	std::cout << a << std::endl;
+	// int q = e + f + g;
+	// std::cout << q << std::endl;
 
 	// Interger c = a + x;
 	// std::cout << c << std::endl;
