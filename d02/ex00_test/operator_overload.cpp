@@ -69,7 +69,7 @@ int main(void) {
 	// Interger a = z + y;
 	Interger a = x.operator+(y.operator+(z)); 
 	// Interger a = x + y + z;
-	std::cout << a << std::endl;
+	operator<<(std::cout, a) << std::endl;
 	// int q = e + f + g;
 	// std::cout << q << std::endl;
 
