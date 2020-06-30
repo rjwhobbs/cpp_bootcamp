@@ -1,4 +1,5 @@
 #include <fstream>
+#include <ostream>
 #include <string>
 #include <iostream>
 #include <sstream>
