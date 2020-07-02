@@ -2,26 +2,20 @@
 #include "Fixed.hpp"
 
 int main(void) {
-	Fixed a;
-	Fixed  b( 10 ); 
-	Fixed const c( 42.42f ); 
-	Fixed d( b );
+	Fixed a(42.42f);
+	Fixed b(-42.42f);
+	Fixed c(42.0f);
+	Fixed d(-42.0f);
 
-	a = Fixed( 1234.4321f );
+	std::cout << "a \n" << a.toInt() << std::endl;
+	std::cout << "b \n" << b.toInt() << std::endl;
+	std::cout << "d \n" << d.toInt() << std::endl;
+	std::cout << "c \n" << c.toInt() << std::endl;
 
-	std::cout << "a is " << a << std::endl;
-	std::cout << "b is " << b << std::endl;
-	std::cout << "c is " << c << std::endl;
-	std::cout << "d is " << d << std::endl;
+	std::cout << "a \n" << a << std::endl;
+	std::cout << "b \n" << b << std::endl;
+	std::cout << "d \n" << d << std::endl;
+	std::cout << "c \n" << c << std::endl;
 
-	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
-
-	b.setRawBits(256);
-
-	std::cout << d << std::endl;
-		
 	return 0;
 }

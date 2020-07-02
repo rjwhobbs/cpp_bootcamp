@@ -1,7 +1,5 @@
 #include <iostream>
 #include "Fixed.hpp"
-// Delete me
-#include <bitset>
 
 Fixed::Fixed (void) : _value(0) {
 	std::cout << "Default constructor called" << std::endl;
@@ -47,19 +45,6 @@ Fixed& Fixed::operator=(const Fixed& rhs) {
 }
 
 int Fixed::toInt(void) const {
-	signed int pad = 0;
-
-	if (this->_value < 0) {
-		pad = 0xFF000000;
-	} 
-
-	unsigned int temp = ((this->_value & 0xFFFFFF00) >> Fixed::_scale) + pad;
-	int ret = temp;
-
-	std::bitset<32> A(this->_value);
-  std::cout << "A - " << A << std::endl;
-	std::bitset<32> B(ret);
-  std::cout << "B - " << B << std::endl;
 	return this->_value >> Fixed::_scale;
 }
 
