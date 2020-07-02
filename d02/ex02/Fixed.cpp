@@ -45,6 +45,7 @@ Fixed& Fixed::operator=(const Fixed& rhs) {
 }
 
 int Fixed::toInt(void) const {
+	// Maybe I should get the float val then cast to int?
 	signed int pad = 0;
 
 	if (this->_value < 0) {
