@@ -19,6 +19,11 @@ class Fixed {
 
 		Fixed& operator=(const Fixed& rhs);
 		bool operator<(Fixed const& rhs);
+		bool operator>(Fixed const& rhs);
+		bool operator<=(Fixed const& rhs);
+		bool operator>=(Fixed const& rhs);
+		bool operator==(Fixed const& rhs);
+		bool operator!=(Fixed const& rhs);
 
 	private:
 

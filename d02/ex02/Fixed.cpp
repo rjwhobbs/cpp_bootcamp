@@ -50,6 +50,26 @@ bool Fixed::operator<(Fixed const& rhs) {
 	return this->_value < rhs.getRawBits() ? true : false; 
 }
 
+bool Fixed::operator>(Fixed const& rhs) {
+	return this->_value > rhs.getRawBits() ? true : false; 
+}
+
+bool Fixed::operator<=(Fixed const& rhs) {
+	return this->_value <= rhs.getRawBits() ? true : false; 
+}
+
+bool Fixed::operator>=(Fixed const& rhs) {
+	return this->_value >= rhs.getRawBits() ? true : false; 
+}
+
+bool Fixed::operator==(Fixed const& rhs) {
+	return this->_value == rhs.getRawBits() ? true : false; 
+}
+
+bool Fixed::operator!=(Fixed const& rhs) {
+	return this->_value != rhs.getRawBits() ? true : false; 
+}
+
 int Fixed::toInt(void) const {
 	// Maybe I should get the float val then cast to int?
 	signed int pad = 0;
