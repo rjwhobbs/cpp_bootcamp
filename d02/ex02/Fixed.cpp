@@ -6,6 +6,8 @@ Fixed::Fixed (void) : _value(0) {
 }
 
 Fixed::Fixed (const Fixed& src) {
+	// Need to add protection against copying self
+	// https://en.cppreference.com/w/cpp/language/operators
 	std::cout << "Copy constructor called" << std::endl;
 	*this = src;
 }
@@ -42,6 +44,10 @@ Fixed& Fixed::operator=(const Fixed& rhs) {
 	std::cout << "Assignation called" << std::endl;
 	this->_value = rhs.getRawBits();
 	return *this;
+}
+
+bool Fixed::operator<(Fixed const& rhs) {
+	return this->_value < rhs.getRawBits() ? true : false; 
 }
 
 int Fixed::toInt(void) const {

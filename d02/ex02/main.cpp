@@ -2,10 +2,9 @@
 #include "Fixed.hpp"
 
 int main(void) {
-	Fixed a;
+	Fixed a(10);
+	Fixed b(1);
 
-	a.setRawBits(1);
-
-	std::cout << a << std::endl;
+	std::cout << (b < a) << std::endl;
 	return 0;
 }

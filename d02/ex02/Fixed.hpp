@@ -18,6 +18,7 @@ class Fixed {
 		float toFloat(void) const;
 
 		Fixed& operator=(const Fixed& rhs);
+		bool operator<(Fixed const& rhs);
 
 	private:
 
