@@ -45,7 +45,16 @@ Fixed& Fixed::operator=(const Fixed& rhs) {
 }
 
 int Fixed::toInt(void) const {
-	return this->_value >> Fixed::_scale;
+	signed int pad = 0;
+
+	if (this->_value < 0) {
+		pad = 0xFF000000;
+	} 
+
+	unsigned int temp = ((this->_value & 0xFFFFFF00) >> Fixed::_scale) + pad;
+	int out = temp;
+
+	return out;
 }
 
 float Fixed::toFloat(void) const {

@@ -60,7 +60,7 @@ int Fixed::toInt(void) const {
   std::cout << "A - " << A << std::endl;
 	std::bitset<32> B(ret);
   std::cout << "B - " << B << std::endl;
-	return this->_value >> Fixed::_scale;
+	return ret;
 }
 
 float Fixed::toFloat(void) const {
