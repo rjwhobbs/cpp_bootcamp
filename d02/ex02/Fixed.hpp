@@ -7,7 +7,7 @@ class Fixed {
 		Fixed(void);
 		Fixed(int const value);
 		Fixed(float const value);
-		Fixed(const Fixed& src);
+		Fixed(Fixed const& src);
 		~Fixed(void);
 
 		int getRawBits(void) const;
@@ -17,7 +17,9 @@ class Fixed {
 		int toInt(void) const;
 		float toFloat(void) const;
 
-		Fixed& operator=(const Fixed& rhs);
+		Fixed& operator=(Fixed const& rhs);
+		Fixed operator+(Fixed& rhs) const;
+
 		bool operator<(Fixed const& rhs);
 		bool operator>(Fixed const& rhs);
 		bool operator<=(Fixed const& rhs);
@@ -25,11 +27,14 @@ class Fixed {
 		bool operator==(Fixed const& rhs);
 		bool operator!=(Fixed const& rhs);
 
-	private:
+		void showRawBits(std::string name);
 
+	private:
 		int _value;
 
 		static int const _scale;
+
+		Fixed(int64_t value);
 
 };
 

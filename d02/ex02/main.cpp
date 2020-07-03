@@ -1,10 +1,14 @@
 #include <iostream>
+#include <bitset>
 #include "Fixed.hpp"
 
 int main(void) {
-	Fixed a(10);
-	Fixed b(1);
+	Fixed a(1);
+	Fixed b(1.1f);
 
-	std::cout << (a < a) << std::endl;
+	b.showRawBits("b");
+	Fixed c = a + b;
+	c.showRawBits("C");
+	std::cout << "C " << c << std::endl;
 	return 0;
 }

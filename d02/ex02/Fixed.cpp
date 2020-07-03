@@ -1,11 +1,12 @@
 #include <iostream>
+#include <bitset>
 #include "Fixed.hpp"
 
 Fixed::Fixed (void) : _value(0) {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed (const Fixed& src) {
+Fixed::Fixed (Fixed const& src) {
 	// Need to add protection against copying self
 	// https://en.cppreference.com/w/cpp/language/operators
 	std::cout << "Copy constructor called" << std::endl;
@@ -22,6 +23,10 @@ Fixed::Fixed (float const value) {
 	this->_value = (value * (float)(1 << Fixed::_scale));
 }
 
+Fixed::Fixed (int64_t value) {
+	this->_value = value;
+}
+
 Fixed::~Fixed (void) {
 	std::cout << "Destructor called" << std::endl;
 }
@@ -35,15 +40,19 @@ int Fixed::getScale(void) const {
 	return Fixed::_scale;
 }
 
-void Fixed::setRawBits(const int value) {
+void Fixed::setRawBits(int const value) {
 	std::cout << "setRawBits member called" << std::endl;
 	this->_value = value;
 }
 
-Fixed& Fixed::operator=(const Fixed& rhs) {
+Fixed& Fixed::operator=(Fixed const& rhs) {
 	std::cout << "Assignation called" << std::endl;
 	this->_value = rhs.getRawBits();
 	return *this;
+}
+
+Fixed Fixed::operator+(Fixed& rhs) const {
+	return Fixed(int64_t(this->_value + rhs.getRawBits()));
 }
 
 bool Fixed::operator<(Fixed const& rhs) {
@@ -86,6 +95,11 @@ int Fixed::toInt(void) const {
 
 float Fixed::toFloat(void) const {
 	return (float)this->_value / (float)(1 << Fixed::_scale);
+}
+
+void Fixed::showRawBits(std::string name) {
+	std::bitset<32> out(this->getRawBits());
+	std::cout<< "Bits for " << name << out << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& o, Fixed const& rhs) {
