@@ -19,6 +19,8 @@ class Fixed {
 
 		Fixed& operator=(Fixed const& rhs);
 		Fixed operator+(Fixed& rhs) const;
+		Fixed operator-(Fixed& rhs) const;
+		Fixed operator*(Fixed& rhs) const;
 
 		bool operator<(Fixed const& rhs);
 		bool operator>(Fixed const& rhs);

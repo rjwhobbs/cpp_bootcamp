@@ -55,6 +55,15 @@ Fixed Fixed::operator+(Fixed& rhs) const {
 	return Fixed(int64_t(this->_value + rhs.getRawBits()));
 }
 
+Fixed Fixed::operator-(Fixed& rhs) const {
+	return Fixed(int64_t(this->_value - rhs.getRawBits()));
+}
+
+Fixed Fixed::operator*(Fixed& rhs) const {
+	int64_t val = ((int64_t)this->_value * (int64_t)rhs.getRawBits() >> Fixed::_scale);
+	return Fixed(val);
+}
+
 bool Fixed::operator<(Fixed const& rhs) {
 	return this->_value < rhs.getRawBits() ? true : false; 
 }
