@@ -5,22 +5,14 @@
 int main(void) {
 	Fixed d(2);
 	Fixed a(1);
-	// Fixed c(8388607.234234f);
-	// Fixed e(234);
-
-	std::cout.precision(20);
-
-	int c = 0;
-	while (d > a) {
-		c++;
-		d--;
-		std::cout << d << std::endl;
-	}
-
+	Fixed const x(2);
+	Fixed const z(1);
+	Fixed& c = Fixed::min(a, d);
+	Fixed const& f = Fixed::min(x, z);
 
 	std::cout << c << std::endl;
-	std::cout << "PRE " << --d << std::endl;
-	std::cout << "AAA " << d << std::endl;
-	d.showRawBits("D");
+	std::cout << "Const min" << f << std::endl;
+	c.setRawBits(123123);
+	std::cout << a.getRawBits() << std::endl;
 	return 0;
 }

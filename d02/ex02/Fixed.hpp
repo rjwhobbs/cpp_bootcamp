@@ -17,6 +17,11 @@ class Fixed {
 		int toInt(void) const;
 		float toFloat(void) const;
 
+		static Fixed& min(Fixed& a, Fixed& b);
+		static Fixed const& min(Fixed const& a, Fixed const& b);
+		static Fixed& max(Fixed& a, Fixed& b);
+		static Fixed const& max(Fixed const& a, Fixed const& b);
+
 		Fixed& operator=(Fixed const& rhs);
 		Fixed operator+(Fixed& rhs) const;
 		Fixed operator-(Fixed& rhs) const;

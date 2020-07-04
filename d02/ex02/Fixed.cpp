@@ -41,6 +41,52 @@ void Fixed::setRawBits(int const value) {
 	this->_value = value;
 }
 
+int Fixed::toInt(void) const {
+	// Maybe I should get the float val then cast to int?
+	signed int pad = 0;
+
+	if (this->_value < 0) {
+		pad = 0xFF000000;
+	} 
+
+	unsigned int temp = ((this->_value & 0xFFFFFF00) >> Fixed::_scale) + pad;
+	int out = temp;
+
+	return out;
+}
+
+float Fixed::toFloat(void) const {
+	return (float)this->_value / (float)(1 << Fixed::_scale);
+}
+
+Fixed& Fixed::min(Fixed& a, Fixed& b) {
+	if (a < b) {
+		return a;
+	}
+	return b;
+}
+
+Fixed const& Fixed::min(Fixed const& a, Fixed const& b) {
+	if (a.getRawBits() < b.getRawBits()) {
+		return a;
+	}
+	return b;
+}
+
+Fixed& Fixed::max(Fixed& a, Fixed& b) {
+	if (a > b) {
+		return a;
+	}
+	return b;
+}
+
+Fixed const& Fixed::max(Fixed const& a, Fixed const& b) {
+	if (a.getRawBits() > b.getRawBits()) {
+		return a;
+	}
+	return b;
+}
+
 Fixed& Fixed::operator=(Fixed const& rhs) {
 	std::cout << "Assignation called" << std::endl;
 	this->_value = rhs.getRawBits();
@@ -119,24 +165,6 @@ bool Fixed::operator==(Fixed const& rhs) {
 
 bool Fixed::operator!=(Fixed const& rhs) {
 	return this->_value != rhs.getRawBits() ? true : false; 
-}
-
-int Fixed::toInt(void) const {
-	// Maybe I should get the float val then cast to int?
-	signed int pad = 0;
-
-	if (this->_value < 0) {
-		pad = 0xFF000000;
-	} 
-
-	unsigned int temp = ((this->_value & 0xFFFFFF00) >> Fixed::_scale) + pad;
-	int out = temp;
-
-	return out;
-}
-
-float Fixed::toFloat(void) const {
-	return (float)this->_value / (float)(1 << Fixed::_scale);
 }
 
 void Fixed::showRawBits(std::string name) {
