@@ -17,8 +17,10 @@ int main(void) {
 		std::cout << d << std::endl;
 	}
 
-	std::cout << c << std::endl;
-	// std::cout << d << std::endl;
+
+	// std::cout << c << std::endl;
+	std::cout << "PRE " << ++d << std::endl;
+	std::cout << "AAA " << d << std::endl;
 	d.showRawBits("D");
 	return 0;
 }

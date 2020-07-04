@@ -73,6 +73,11 @@ Fixed Fixed::operator++(int) {
 	return temp;
 };
 
+Fixed Fixed::operator++(void) {
+	this->_value += 1;
+	return *this;
+};
+
 Fixed Fixed::operator/(Fixed& rhs) const {
 	Fixed temp;
 	int64_t val = (((int64_t)this->_value) << Fixed::_scale);
