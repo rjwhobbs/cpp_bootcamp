@@ -3,32 +3,32 @@
 #include "Fixed.hpp"
 
 Fixed::Fixed (void) : _value(0) {
-	std::cout << "Default constructor called" << std::endl;
+	// std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed (Fixed const& src) {
 	// Need to add protection against copying self
 	// https://en.cppreference.com/w/cpp/language/operators
-	std::cout << "Copy constructor called" << std::endl;
+	// std::cout << "Copy constructor called" << std::endl;
 	*this = src;
 }
 
 Fixed::Fixed (int const value) {
-	std::cout << "Int constructor called" << std::endl;
+	// std::cout << "Int constructor called" << std::endl;
 	this->_value = value << Fixed::_scale;
 }
 
 Fixed::Fixed (float const value) {
-	std::cout << "Float constructor called" << std::endl;
+	// std::cout << "Float constructor called" << std::endl;
 	this->_value = (value * (float)(1 << Fixed::_scale));
 }
 
 Fixed::~Fixed (void) {
-	std::cout << "Destructor called" << std::endl;
+	// std::cout << "Destructor called" << std::endl;
 }
 
 int Fixed::getRawBits(void) const {
-	std::cout << "getRawBits member called" << std::endl;
+	// std::cout << "getRawBits member called" << std::endl;
 	return this->_value;
 }
 
@@ -37,7 +37,7 @@ int Fixed::getScale(void) const {
 }
 
 void Fixed::setRawBits(int const value) {
-	std::cout << "setRawBits member called" << std::endl;
+	// std::cout << "setRawBits member called" << std::endl;
 	this->_value = value;
 }
 
@@ -88,7 +88,7 @@ Fixed const& Fixed::max(Fixed const& a, Fixed const& b) {
 }
 
 Fixed& Fixed::operator=(Fixed const& rhs) {
-	std::cout << "Assignation called" << std::endl;
+	// std::cout << "Assignation called" << std::endl;
 	this->_value = rhs.getRawBits();
 	return *this;
 }
