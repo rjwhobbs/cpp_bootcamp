@@ -3,23 +3,23 @@
 #include "Fixed.hpp"
 
 int main(void) {
-	Fixed d(1);
-	Fixed a(2);
+	Fixed d(2);
+	Fixed a(1);
 	// Fixed c(8388607.234234f);
 	// Fixed e(234);
 
 	std::cout.precision(20);
 
 	int c = 0;
-	while (d < a) {
+	while (d > a) {
 		c++;
-		d++;
+		d--;
 		std::cout << d << std::endl;
 	}
 
 
-	// std::cout << c << std::endl;
-	std::cout << "PRE " << ++d << std::endl;
+	std::cout << c << std::endl;
+	std::cout << "PRE " << --d << std::endl;
 	std::cout << "AAA " << d << std::endl;
 	d.showRawBits("D");
 	return 0;

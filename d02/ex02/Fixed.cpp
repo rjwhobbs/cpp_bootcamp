@@ -78,6 +78,18 @@ Fixed Fixed::operator++(void) {
 	return *this;
 };
 
+Fixed Fixed::operator--(int) {
+	Fixed temp;
+	temp.setRawBits(this->_value);
+	this->_value -= 1;
+	return temp;
+};
+
+Fixed Fixed::operator--(void) {
+	this->_value -= 1;
+	return *this;
+};
+
 Fixed Fixed::operator/(Fixed& rhs) const {
 	Fixed temp;
 	int64_t val = (((int64_t)this->_value) << Fixed::_scale);
