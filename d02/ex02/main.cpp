@@ -3,13 +3,13 @@
 #include "Fixed.hpp"
 
 int main(void) {
-	Fixed a(1.55f);
-	Fixed b(1.55f);
+	Fixed d;
+	Fixed c(8388607.234234f);
+	Fixed e(234);
 
-	b.showRawBits("b");
-	Fixed c = a * b;
-	c.showRawBits("C");
-	std::cout << std::fixed;
-	std::cout << "C " << c << std::endl;
+	d = c / e;
+	std::cout.precision(20);
+	std::cout << d << std::endl;
+	d.showRawBits("D");
 	return 0;
 }

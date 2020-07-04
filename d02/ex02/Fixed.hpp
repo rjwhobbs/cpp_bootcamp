@@ -21,6 +21,7 @@ class Fixed {
 		Fixed operator+(Fixed& rhs) const;
 		Fixed operator-(Fixed& rhs) const;
 		Fixed operator*(Fixed& rhs) const;
+		Fixed operator/(Fixed& rhs) const;
 
 		bool operator<(Fixed const& rhs);
 		bool operator>(Fixed const& rhs);
@@ -35,9 +36,6 @@ class Fixed {
 		int _value;
 
 		static int const _scale;
-
-		Fixed(int64_t value);
-
 };
 
 std::ostream& operator<<(std::ostream& o, Fixed const& rhs);

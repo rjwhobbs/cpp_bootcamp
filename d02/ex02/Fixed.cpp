@@ -23,10 +23,6 @@ Fixed::Fixed (float const value) {
 	this->_value = (value * (float)(1 << Fixed::_scale));
 }
 
-Fixed::Fixed (int64_t value) {
-	this->_value = value;
-}
-
 Fixed::~Fixed (void) {
 	std::cout << "Destructor called" << std::endl;
 }
@@ -52,16 +48,29 @@ Fixed& Fixed::operator=(Fixed const& rhs) {
 }
 
 Fixed Fixed::operator+(Fixed& rhs) const {
-	return Fixed(int64_t(this->_value + rhs.getRawBits()));
+	Fixed temp;
+	temp.setRawBits(this->_value + rhs.getRawBits());
+	return temp;
 }
 
 Fixed Fixed::operator-(Fixed& rhs) const {
-	return Fixed(int64_t(this->_value - rhs.getRawBits()));
+	Fixed temp;
+	temp.setRawBits(this->_value - rhs.getRawBits());
+	return temp;
 }
 
 Fixed Fixed::operator*(Fixed& rhs) const {
-	int64_t val = ((int64_t)this->_value * (int64_t)rhs.getRawBits() >> Fixed::_scale);
-	return Fixed(val);
+	Fixed temp;
+	int64_t val = this->_value * rhs.getRawBits();
+	temp.setRawBits(val >>= Fixed::_scale);
+	return temp;
+}
+
+Fixed Fixed::operator/(Fixed& rhs) const {
+	Fixed temp;
+	int64_t val = (((int64_t)this->_value) << Fixed::_scale);
+	temp.setRawBits(val / rhs.getRawBits());
+	return temp;
 }
 
 bool Fixed::operator<(Fixed const& rhs) {
