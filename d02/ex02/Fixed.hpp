@@ -22,6 +22,7 @@ class Fixed {
 		Fixed operator-(Fixed& rhs) const;
 		Fixed operator*(Fixed& rhs) const;
 		Fixed operator/(Fixed& rhs) const;
+		Fixed operator++(int const p_inc);
 
 		bool operator<(Fixed const& rhs);
 		bool operator>(Fixed const& rhs);
