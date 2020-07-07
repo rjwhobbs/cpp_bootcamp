@@ -5,46 +5,71 @@
 #include <cctype>
 #include "Fixed.hpp"
 
-bool is_num(std::string& str) {
-	Fixed a;
-	Fixed b;
+bool is_op(std::string& str) {
+	if (str.length() == 1 && (str[0] == '+' || str[0] == '-')) {
+		return true;
+	}
+	return false;
+}
+
+void perform_op(Fixed& sum, Fixed& b, char* op) {
+	switch (*op) {
+		case '+': sum = sum + b; break;
+		case '-': sum = sum - b; break;
+	}
+}
+
+void get_op(std::string& str, char* op) {
+	switch (str[0]) {
+		case '+' : *op = '+'; break;
+		case '-' : *op = '-'; break;
+	}
+}
+
+bool is_float(std::string& str) {
 	size_t i = 0;
 	while (i < str.length()) {
 		if (!isdigit(str[i])) {
-			return false;
+			if (str[i] == '.' && i < str.length() - 1) {
+				i++;
+			} else {
+				return false;
+			}
+		} else {
+			i++;
 		}
-		i++;
 	}
 	return true;
 }
 
 int main(int ac, char* av[]) {
+	(void)ac;
 	Fixed a;
 	Fixed b;
 	Fixed sum;
-	(void)ac;
 	std::string input = av[1];
 	std::istringstream is(input);
 	
 	char op = 0;
-	bool stack = false;
+	bool first_operand = false;
 	std::string str;
-	int val = 0;
+	float val = 0;
+	
 	is >> str;
 	while(is) {
 		std::cout << "Str " << str << std::endl;
-		if (is_num(str) && !stack) {
-			val = std::stoi(str);
+		if (is_float(str) && !first_operand) {
+			val = std::stof(str);
 			a = val;
 			sum = sum + a;
-			stack = true;	
-		} else if (str == "+") {
-			op = '+';
-		} else if (is_num(str) && stack && op) {
-			val = std::stoi(str);
+			first_operand = true;	
+		} else if (is_op(str)) {
+			get_op(str, &op);
+		} else if (is_float(str) && first_operand && op) {
+			val = std::stof(str);
 			b = val;
-			if (op == '+') {
-				sum = sum + b;
+			if (op) {
+				perform_op(sum, b, &op);
 			}
 			op = 0;
 		} 
