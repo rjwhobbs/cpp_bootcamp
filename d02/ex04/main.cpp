@@ -62,11 +62,16 @@ void reverse_prev(Fixed& total, Fixed& a, char prev_op) {
 
 bool is_float(std::string& str) {
 	size_t i = 0;
-	while (i < str.length()) {
+	size_t len = str.length();
+	while (i < len ) {
 		if (!isdigit(str[i])) {
-			if (str[i] == '.' && i < str.length() - 1) {
+			if (i == 0 && (str[i] == '-' || str[i] == '+') && len > 1) {
 				i++;
-			} else {
+			}
+			else if (str[i] == '.' && i < str.length() - 1) {
+				i++;
+			} 
+			else {
 				return false;
 			}
 		} else {
@@ -124,15 +129,15 @@ Fixed get_val(std::istringstream& is) {
 					else {
 						perform_add_min(total, mult_total, '+');
 					}
+					// is this needed ?
 					mult_total.setRawBits(0x100);
-					// await_op = 0; // ?is this needed 
 				} 
 				get_op(str, &op);
 			}
 		}
 		is >> str;
 	}
-	
+
 	if (await_op) {
 		perform_add_min(total, mult_total, await_op);
 	}
