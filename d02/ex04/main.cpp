@@ -26,20 +26,20 @@ bool is_op(std::string& str) {
 	return false;
 }
 
-void perform_add_min(Fixed& sum, Fixed& b, char op) {
+void perform_add_min(Fixed& total, Fixed& a, char op) {
 	if (op == '+'){
-		sum = sum + b;
+		total = total + a;
 	} else if (op == '-'){
-		sum = sum - b;
+		total = total - a;
 	} 
 }
 
 
-void perform_mul_div(Fixed& a, Fixed& b, char op) {
+void perform_mul_div(Fixed& mult_total, Fixed& a, char op) {
 	if (op == '*') {
-		b = a * b;
+		mult_total = mult_total * a;
 	} else if (op == '/') {
-		b = a / b;
+		mult_total = mult_total / a;
 	}
 	
 }
@@ -53,10 +53,10 @@ void get_op(std::string& str, char* op) {
 	}
 }
 
-void reverse_prev(Fixed& sum, Fixed& b, char prev_op) {
+void reverse_prev(Fixed& total, Fixed& a, char prev_op) {
 	switch (prev_op) {
-		case '+': sum = sum - b; break;
-		case '-': sum = sum + b; break;
+		case '+': total = total - a; break;
+		case '-': total = total + a; break;
 	}
 }
 
@@ -84,11 +84,60 @@ Fixed get_val(std::istringstream& is) {
 	std::string str;
 	char op = 0;
 	char await_op = 0;
+	bool first_operand = false;
 
 	is >> str;
 	while(is) {
 		std::cout << "F " << str << std::endl;
-		total = get_val(is);
+
+		if(!first_operand) {
+			total = std::stof(str);
+			first_operand = true;
+		} 
+		else if (first_operand) {
+
+			if (is_float(str)) {
+				a = std::stof(str);
+				if (is_add_min(op)) {
+					perform_add_min(total, a, op);
+				}
+				else if (is_mul_div(op)) {
+					perform_mul_div(mult_total, a, op);
+				}
+			}
+			else if (is_op(str)) {
+				if (is_mul_div(str[0]) && (is_add_min(op) || !op)) {
+					if (!op) {
+						mult_total = total;
+						total.setRawBits(0);
+					} 
+					else {
+						reverse_prev(total, a, op);
+						mult_total = a;
+					}
+					await_op = op;
+				}
+				else if (is_add_min(str[0]) && is_mul_div(op)) {
+					if (is_add_min(await_op)) {
+						perform_add_min(total, mult_total, await_op);
+					} 
+					else {
+						perform_add_min(total, mult_total, '+');
+					}
+					mult_total.setRawBits(0x100);
+					// await_op = 0; // ?is this needed 
+				} 
+				get_op(str, &op);
+			}
+		}
+		is >> str;
+	}
+	
+	if (await_op) {
+		perform_add_min(total, mult_total, await_op);
+	}
+	else if (!await_op) {
+		perform_add_min(total, mult_total, '+');
 	}
 
 	return total;
