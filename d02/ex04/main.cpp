@@ -33,24 +33,22 @@ bool is_op(std::string& str) {
 	return false;
 }
 
-void perform_add_min(Fixed& sum, Fixed& b, char* op) {
-	if (*op == '+'){
+void perform_add_min(Fixed& sum, Fixed& b, char op) {
+	if (op == '+'){
 		sum = sum + b;
-	} else if (*op == '-'){
+	} else if (op == '-'){
 		sum = sum - b;
 	} 
 }
 
 
-void perform_mul_div(Fixed& sum, Fixed& a, Fixed& b, char* op, char* prev_op) {
-	if (*op == '*') {
+void perform_mul_div(Fixed& a, Fixed& b, char op) {
+	if (op == '*') {
 		b = a * b;
-	} else if (*op == '/') {
+	} else if (op == '/') {
 		b = a / b;
 	}
-	if (is_add_min(*prev_op)) {
-		perform_add_min(sum, b, prev_op);
-	}
+	
 }
 
 void get_op(std::string& str, char* op) {
@@ -62,8 +60,8 @@ void get_op(std::string& str, char* op) {
 	}
 }
 
-void reverse_prev(Fixed& sum, Fixed& b, char* prev_op) {
-	switch (*prev_op) {
+void reverse_prev(Fixed& sum, Fixed& b, char prev_op) {
+	switch (prev_op) {
 		case '+': sum = sum - b; break;
 		case '-': sum = sum + b; break;
 	}
@@ -107,23 +105,26 @@ int main(int ac, char* av[]) {
 			a = val;
 			sum = sum + a;
 			first_operand = true;
-			a.setRawBits(0);	
+			// a.setRawBits(0);	
 		} else if (is_op(str)) {
 			get_op(str, &op);
-			if (is_mul_div(op)) {
-				reverse_prev(sum, b, &prev_op);
+			if (is_mul_div(op) && is_add_min(prev_op)) {
+				reverse_prev(sum, b, prev_op);
 			}
 		} else if (is_float(str) && first_operand && op) {
 			val = std::stof(str);
 			b = val;
-	
 			if (is_add_min(op)) {
-				perform_add_min(sum, b, &op);
+				perform_add_min(sum, b, op);
 			} else if (is_mul_div(op)) {
-				perform_mul_div(sum, a, b, &op, &prev_op);
+				perform_mul_div(a, b, op);
+				if (is_add_min(prev_op)) {
+					perform_add_min(sum, b, prev_op);
+				}
 			}
 			prev_op = op;
 			a = b;
+			std::cout << "A " << a << std::endl;
 			op = 0;
 		} 
 		is >> str;
