@@ -85,6 +85,7 @@ Fixed get_val(std::istringstream& is) {
 	Fixed total;
 	Fixed mult_total;
 	Fixed a;
+	Fixed rec;
 
 	std::string str;
 	char op = 0;
@@ -92,17 +93,25 @@ Fixed get_val(std::istringstream& is) {
 	bool first_operand = false;
 
 	is >> str;
-	while(is) {
-		std::cout << "F " << str << std::endl;
+	while(is && str[0] != ')') {
+		std::cout << "F " << str << ' ' << std::endl;
 
-		if(!first_operand && is_float(str)) {
-			total = std::stof(str);
+		if(!first_operand && ((is_float(str)) || str[0] == '(')) {
+			if (str[0] != '(')	{
+				total = std::stof(str);
+			} else {
+				total = get_val(is);
+			}
 			first_operand = true;
 		} 
 		else if (first_operand) {
 
-			if (is_float(str)) {
-				a = std::stof(str);
+			if (is_float(str) || str[0] == '(') {
+				if (str[0] != '(') {
+					a = std::stof(str);
+				} else {
+					a = get_val(is);
+				}
 				if (is_add_min(op)) {
 					perform_add_min(total, a, op);
 				}
@@ -134,6 +143,7 @@ Fixed get_val(std::istringstream& is) {
 				get_op(str, &op);
 			}
 		}
+
 		is >> str;
 	}
 
