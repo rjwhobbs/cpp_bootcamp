@@ -68,7 +68,7 @@ bool is_float(std::string& str) {
 			if (i == 0 && (str[i] == '-' || str[i] == '+') && len > 1) {
 				i++;
 			}
-			else if (str[i] == '.' && i < str.length() - 1) {
+			else if (str[i] == '.' && i < len - 1) {
 				i++;
 			} 
 			else {
@@ -95,7 +95,7 @@ Fixed get_val(std::istringstream& is) {
 	while(is) {
 		std::cout << "F " << str << std::endl;
 
-		if(!first_operand) {
+		if(!first_operand && is_float(str)) {
 			total = std::stof(str);
 			first_operand = true;
 		} 
@@ -129,8 +129,7 @@ Fixed get_val(std::istringstream& is) {
 					else {
 						perform_add_min(total, mult_total, '+');
 					}
-					// is this needed ?
-					mult_total.setRawBits(0x100);
+					mult_total.setRawBits(0);
 				} 
 				get_op(str, &op);
 			}
