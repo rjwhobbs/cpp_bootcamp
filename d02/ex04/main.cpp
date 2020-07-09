@@ -5,13 +5,6 @@
 #include <cctype>
 #include "Fixed.hpp"
 
-// void flip_op(char* prev_op, char* op) {
-// 	switch (*op) {
-// 		case '+': 
-// 		case '-':
-// 	}
-// }
-
 bool is_add_min(char op) {
 	if (op == '+' || op == '-' ) {
 		return true;
@@ -83,53 +76,31 @@ bool is_float(std::string& str) {
 	return true;
 }
 
-int main(int ac, char* av[]) {
-	(void)ac;
+Fixed get_val(std::istringstream& is) {
+	Fixed total;
+	Fixed mult_total;
 	Fixed a;
-	Fixed b;
-	Fixed sum;
-	std::string input = av[1];
-	std::istringstream is(input);
-	
-	char op = 0;
-	char prev_op = 0;
-	bool first_operand = false;
+
 	std::string str;
-	float val = 0;
+	char op = 0;
+	char await_op = 0;
 
 	is >> str;
 	while(is) {
-		// std::cout << "Str " << str << std::endl;
-		if (is_float(str) && !first_operand) {
-			val = std::stof(str);
-			a = val;
-			sum = sum + a;
-			first_operand = true;
-			// a.setRawBits(0);	
-		} else if (is_op(str)) {
-			get_op(str, &op);
-			if (is_mul_div(op) && is_add_min(prev_op)) {
-				reverse_prev(sum, b, prev_op);
-			}
-		} else if (is_float(str) && first_operand && op) {
-			val = std::stof(str);
-			b = val;
-			if (is_add_min(op)) {
-				perform_add_min(sum, b, op);
-			} else if (is_mul_div(op)) {
-				perform_mul_div(a, b, op);
-				if (is_add_min(prev_op)) {
-					perform_add_min(sum, b, prev_op);
-				}
-			}
-			prev_op = op;
-			a = b;
-			std::cout << "A " << a << std::endl;
-			op = 0;
-		} 
-		is >> str;
-		std::cout << "sum " << sum << std::endl;
+		std::cout << "F " << str << std::endl;
+		total = get_val(is);
 	}
+
+	return total;
+}
+
+int main(int ac, char* av[]) {
+	(void)ac;
+	std::istringstream is(av[1]);
+	Fixed sum;
+
+	sum = get_val(is);
+	std::cout << "Sum " << sum << std::endl;
 
 	return 0;	
 }
