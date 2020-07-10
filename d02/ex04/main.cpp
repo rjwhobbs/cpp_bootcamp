@@ -1,3 +1,4 @@
+#include <cstdio>
 #include <fstream>	
 #include <string>	
 #include <iostream>	
@@ -6,9 +7,22 @@
 #include <system_error>
 #include "Fixed.hpp"
 
-void print_error(unsigned char error) {
+void print_error(char error) {
 	if (error & 01) {
 		std::cerr << "Error: Can't divide by zero" << std::endl;
+	}
+	if (error & 02) {
+		std::cerr << "Syntax error: Operators and operands need to be space seperated " << std::endl;
+	}
+	if (error & 04) {
+		std::cerr << "Error: Only use numeric values" << std::endl;
+	}
+}
+
+void check_str(std::string& str, char* error) {
+	size_t len = str.length();
+	if ((str[0] == '(' || str[0] == ')') && len > 1 ) {
+		*error += 02; 
 	}
 }
 
@@ -43,13 +57,13 @@ void perform_add_min(Fixed& total, Fixed& a, char op) {
 }
 
 
-void perform_mul_div(Fixed& mult_total, Fixed& a, char op, unsigned char* error) {
+void perform_mul_div(Fixed& mult_total, Fixed& a, char op, char* error) {
 	if (op == '*') {
 		mult_total = mult_total * a;
 	} 
 	else if (op == '/') {
 		if (a == 0) {
-			*error = 01;
+			*error += 01;
 		}
 		else {
 			mult_total = mult_total / a;
@@ -96,7 +110,7 @@ bool is_float(std::string& str) {
 	return true;
 }
 
-Fixed get_val(std::istringstream& is, unsigned char* error) {
+Fixed eval_expr(std::istringstream& is, char* error) {
 	Fixed total;
 	Fixed mult_total;
 	Fixed a;
@@ -108,26 +122,26 @@ Fixed get_val(std::istringstream& is, unsigned char* error) {
 	bool first_operand = false;
 
 	is >> str;
-	while(is && str[0] != ')' && !*error) {
-		// std::cout << "F " << str << ' ' << std::endl;
+	check_str(str, error);
+	while (is && str != ")" && !*error) {
+		std::cout << "F " << str << ' ' << std::endl;
 
-		if(!first_operand && ((is_float(str)) || str[0] == '(')) {
-			if (str[0] != '(')	{
+		if (!first_operand && (is_float(str) || str == "(")) {
+			if (str != "(")	{
 				total = std::stof(str);
 			} 
-			else if (str[0] == '(') {
-				total = get_val(is, error);
+			else if (str == "(") {
+				total = eval_expr(is, error);
 			}
 			first_operand = true;
 		} 
 		else if (first_operand) {
-
-			if (is_float(str) || str[0] == '(') {
-				if (str[0] != '(') {
+			if (is_float(str) || str == "(") {
+				if (str != "(") {
 					a = std::stof(str);
 				} 
-				else if (str[0] == '(') {
-					a = get_val(is, error);
+				else if (str == "(") {
+					a = eval_expr(is, error);
 				}
 				if (is_add_min(op)) {
 					perform_add_min(total, a, op);
@@ -161,6 +175,7 @@ Fixed get_val(std::istringstream& is, unsigned char* error) {
 			}
 		}
 		is >> str;
+		check_str(str, error);
 	}
 
 	if (await_op) {
@@ -177,9 +192,9 @@ int main(int ac, char* av[]) {
 	(void)ac;
 	std::istringstream is(av[1]);
 	Fixed sum;
-	unsigned char error = 0;
+	char error = 0;
 
-	sum = get_val(is, &error);
+	sum = eval_expr(is, &error);
 
 	if (!error) {
 		std::cout << "Answer " << sum << std::endl;
