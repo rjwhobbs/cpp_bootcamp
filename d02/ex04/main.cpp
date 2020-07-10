@@ -12,17 +12,7 @@ void print_error(char error) {
 		std::cerr << "Error: Can't divide by zero" << std::endl;
 	}
 	if (error & 02) {
-		std::cerr << "Syntax error: Operators and operands need to be space seperated " << std::endl;
-	}
-	if (error & 04) {
-		std::cerr << "Error: Only use numeric values" << std::endl;
-	}
-}
-
-void check_str(std::string& str, char* error) {
-	size_t len = str.length();
-	if ((str[0] == '(' || str[0] == ')') && len > 1 ) {
-		*error += 02; 
+		std::cerr << "Syntax error: Operators and operands need to be space seperated and contain only decimal numbers" << std::endl;
 	}
 }
 
@@ -108,6 +98,12 @@ bool is_float(std::string& str) {
 		}
 	}
 	return true;
+}
+
+void check_str(std::string& str, char* error) {
+	if ((!is_float(str) &&	str != "+" && str != "-" && str != "*" && str != "/" && str != "(" && str != ")")) {
+		*error += 02; 
+	}
 }
 
 Fixed eval_expr(std::istringstream& is, char* error) {
