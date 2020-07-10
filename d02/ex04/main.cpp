@@ -3,7 +3,14 @@
 #include <iostream>	
 #include <sstream>
 #include <cctype>
+#include <system_error>
 #include "Fixed.hpp"
+
+void print_error(unsigned char error) {
+	if (error & 01) {
+		std::cerr << "Error: Can't divide by zero" << std::endl;
+	}
+}
 
 bool is_add_min(char op) {
 	if (op == '+' || op == '-' ) {
@@ -29,17 +36,24 @@ bool is_op(std::string& str) {
 void perform_add_min(Fixed& total, Fixed& a, char op) {
 	if (op == '+'){
 		total = total + a;
-	} else if (op == '-'){
+	} 
+	else if (op == '-') {
 		total = total - a;
 	} 
 }
 
 
-void perform_mul_div(Fixed& mult_total, Fixed& a, char op) {
+void perform_mul_div(Fixed& mult_total, Fixed& a, char op, unsigned char* error) {
 	if (op == '*') {
 		mult_total = mult_total * a;
-	} else if (op == '/') {
-		mult_total = mult_total / a;
+	} 
+	else if (op == '/') {
+		if (a == 0) {
+			*error = 01;
+		}
+		else {
+			mult_total = mult_total / a;
+		}
 	}
 	
 }
@@ -74,14 +88,15 @@ bool is_float(std::string& str) {
 			else {
 				return false;
 			}
-		} else {
+		} 
+		else {
 			i++;
 		}
 	}
 	return true;
 }
 
-Fixed get_val(std::istringstream& is) {
+Fixed get_val(std::istringstream& is, unsigned char* error) {
 	Fixed total;
 	Fixed mult_total;
 	Fixed a;
@@ -93,14 +108,15 @@ Fixed get_val(std::istringstream& is) {
 	bool first_operand = false;
 
 	is >> str;
-	while(is && str[0] != ')') {
-		std::cout << "F " << str << ' ' << std::endl;
+	while(is && str[0] != ')' && !*error) {
+		// std::cout << "F " << str << ' ' << std::endl;
 
 		if(!first_operand && ((is_float(str)) || str[0] == '(')) {
 			if (str[0] != '(')	{
 				total = std::stof(str);
-			} else {
-				total = get_val(is);
+			} 
+			else if (str[0] == '(') {
+				total = get_val(is, error);
 			}
 			first_operand = true;
 		} 
@@ -109,14 +125,15 @@ Fixed get_val(std::istringstream& is) {
 			if (is_float(str) || str[0] == '(') {
 				if (str[0] != '(') {
 					a = std::stof(str);
-				} else {
-					a = get_val(is);
+				} 
+				else if (str[0] == '(') {
+					a = get_val(is, error);
 				}
 				if (is_add_min(op)) {
 					perform_add_min(total, a, op);
 				}
 				else if (is_mul_div(op)) {
-					perform_mul_div(mult_total, a, op);
+					perform_mul_div(mult_total, a, op, error);
 				}
 			}
 			else if (is_op(str)) {
@@ -143,7 +160,6 @@ Fixed get_val(std::istringstream& is) {
 				get_op(str, &op);
 			}
 		}
-
 		is >> str;
 	}
 
@@ -161,9 +177,16 @@ int main(int ac, char* av[]) {
 	(void)ac;
 	std::istringstream is(av[1]);
 	Fixed sum;
+	unsigned char error = 0;
 
-	sum = get_val(is);
-	std::cout << "Sum " << sum << std::endl;
+	sum = get_val(is, &error);
+
+	if (!error) {
+		std::cout << "Answer " << sum << std::endl;
+	}
+	else {
+		print_error(error);
+	}
 
 	return 0;	
 }
