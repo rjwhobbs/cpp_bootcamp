@@ -12,7 +12,7 @@ class FragTrap {
 		FragTrap& operator=(FragTrap const& rhs);	
 
 		void rangedAtack(std::string const& target);
-		void melleAttack(std::string const& target);
+		void meleeAttack(std::string const& target);
 		void takeDamage(unsigned int amount); 
 		void beRepaired(unsigned int amount); 
 	
@@ -27,5 +27,6 @@ class FragTrap {
 		unsigned int melee_attack_dmg;
 		unsigned int range_attack_dmg;
 		unsigned int armor_dmg_reduction;
-};	
+};
+
 #endif
