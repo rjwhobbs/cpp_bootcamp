@@ -1,5 +1,6 @@
 #include <iostream>	
 #include <string>
+#include <cstdlib>
 #include "FragTrap.hpp"	
 	
 FragTrap::FragTrap (void) : 
@@ -12,6 +13,12 @@ FragTrap::FragTrap (void) :
 	melee_attack_dmg(30),
 	range_attack_dmg(20),
 	armor_dmg_reduction(5) {
+
+	this->randAttacks[0] = &FragTrap::_acidPancakeAttack;
+	this->randAttacks[1] = &FragTrap::_bakedInACakeAttack;
+	this->randAttacks[2] = &FragTrap::_flamingFartAttack;
+	this->randAttacks[3] = &FragTrap::_squirrelArmyAttack;
+	this->randAttacks[4] = &FragTrap::_flyingPianoAttack;
 
 	std::cout << "Just created a fragtrap with an empty name, why would you do such a thing?!" << std::endl;	
 }
@@ -26,6 +33,12 @@ FragTrap::FragTrap (std::string const name) :
 	melee_attack_dmg(30),
 	range_attack_dmg(20),
 	armor_dmg_reduction(5) {
+
+	this->randAttacks[0] = &FragTrap::_acidPancakeAttack;
+	this->randAttacks[1] = &FragTrap::_bakedInACakeAttack;
+	this->randAttacks[2] = &FragTrap::_flamingFartAttack;
+	this->randAttacks[3] = &FragTrap::_squirrelArmyAttack;
+	this->randAttacks[4] = &FragTrap::_flyingPianoAttack;
 
 	std::cout << "Created a fragtrap by the name of "
 		<< this->name << ", good choice."
@@ -114,5 +127,78 @@ void FragTrap::beRepaired(unsigned int amount) {
 		<< " energy points and has a total of "
 		<< this->energy_points
 		<< "."
+		<< std::endl;
+}
+
+void FragTrap::vaulthunter_dot_exe(std::string const& target) {
+	int max_attacks = 5;
+
+	// void (FragTrap::*randAttacks[])(std::string const& target) = {
+	// 	&FragTrap::_acidPancakeAttack,
+	// 	&FragTrap::_bakedInACakeAttack,
+	// 	&FragTrap::_flamingFartAttack,
+	// 	&FragTrap::_squirrelArmyAttack,
+	// 	&FragTrap::_flamingFartAttack,
+	// };
+
+	if (this->energy_points > 25) {
+		(this->*randAttacks[FragTrap::_random_index(max_attacks)])(target);
+		this->energy_points -= 25;
+	}
+}
+
+int FragTrap::_random_index(int max) {
+	sranddev();
+	int ranNum = rand() % max;
+
+	if (ranNum < -1) {
+		ranNum *= -1;
+	}
+
+	return ranNum;
+}
+
+void FragTrap::_acidPancakeAttack(std::string const& target) {
+	std::cout << this->name
+		<< " attacks "
+		<< target 
+		<< " with a pancake containing \"bad\" acid, causing "
+		<< " 50 damage points."
+		<< std::endl;
+}
+
+void FragTrap::_flamingFartAttack(std::string const& target) {
+	std::cout << this->name
+		<< " attacks "
+		<< target 
+		<< " with a flaming mega fart, causing "
+		<< " 50 damage points."
+		<< std::endl;
+}
+
+void FragTrap::_squirrelArmyAttack(std::string const& target) {
+	std::cout << this->name
+		<< " attacks "
+		<< target 
+		<< " with an army of squirrels, causing "
+		<< " 50 damage points."
+		<< std::endl;
+}
+
+void FragTrap::_flyingPianoAttack(std::string const& target) {
+	std::cout << this->name
+		<< " attacks "
+		<< target 
+		<< " with a fly piano, causing "
+		<< " 50 damage points and severe hearing loss."
+		<< std::endl;
+}
+
+void FragTrap::_bakedInACakeAttack(std::string const& target) {
+	std::cout << this->name
+		<< " bakes "
+		<< target 
+		<< " into a cake, causing "
+		<< " 50 damage points."
 		<< std::endl;
 }
