@@ -14,6 +14,7 @@ class ScavTrap {
 		void meleeAttack(std::string const& target);
 		void takeDamage(unsigned int amount); 
 		void beRepaired(unsigned int amount);
+		void challengeNewcomer(std::string const& target);
 
 		std::string name;
 
@@ -27,5 +28,13 @@ class ScavTrap {
 		unsigned int armor_dmg_reduction;
 	
 	private:	
+		void (ScavTrap::*randomChallenges[5])(std::string const& target);
+		void _playScrabbleChallenge(std::string const& target);
+		void _eatMarshmelloChallenge(std::string const& target);
+		void _burpingChallenge(std::string const& target);
+		void _gameOfSkateChallenge(std::string const& target);
+		void _codingChallenge(std::string const& target);
+
+		static int _random_index(int max);
 };	
 #endif
