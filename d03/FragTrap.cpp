@@ -106,7 +106,7 @@ void FragTrap::takeDamage(unsigned int amount) {
 		}
 	}
 	std::cout << this->name
-		<< " was attacke with "
+		<< " was attacked with "
 		<< amount
 		<< " damage points and has "
 		<< this->hit_points
@@ -133,17 +133,12 @@ void FragTrap::beRepaired(unsigned int amount) {
 void FragTrap::vaulthunter_dot_exe(std::string const& target) {
 	int max_attacks = 5;
 
-	// void (FragTrap::*randAttacks[])(std::string const& target) = {
-	// 	&FragTrap::_acidPancakeAttack,
-	// 	&FragTrap::_bakedInACakeAttack,
-	// 	&FragTrap::_flamingFartAttack,
-	// 	&FragTrap::_squirrelArmyAttack,
-	// 	&FragTrap::_flamingFartAttack,
-	// };
-
 	if (this->energy_points >= 25) {
 		(this->*randAttacks[FragTrap::_random_index(max_attacks)])(target);
 		this->energy_points -= 25;
+	}
+	else {
+		std::cout << "Can't perform attack, not enough energy points" << std::endl;
 	}
 }
 
@@ -160,9 +155,9 @@ int FragTrap::_random_index(int max) {
 
 void FragTrap::_acidPancakeAttack(std::string const& target) {
 	std::cout << this->name
-		<< " attacks "
+		<< " forces "
 		<< target 
-		<< " with a pancake containing \"bad\" acid, causing "
+		<< " to eat a pancake containing \"bad\" acid, causing "
 		<< " 50 damage points."
 		<< std::endl;
 }
@@ -172,7 +167,7 @@ void FragTrap::_flamingFartAttack(std::string const& target) {
 		<< " attacks "
 		<< target 
 		<< " with a flaming mega fart, causing "
-		<< " 50 damage points."
+		<< "50 damage points."
 		<< std::endl;
 }
 
@@ -181,7 +176,7 @@ void FragTrap::_squirrelArmyAttack(std::string const& target) {
 		<< " attacks "
 		<< target 
 		<< " with an army of squirrels, causing "
-		<< " 50 damage points."
+		<< "50 damage points."
 		<< std::endl;
 }
 
@@ -190,7 +185,7 @@ void FragTrap::_flyingPianoAttack(std::string const& target) {
 		<< " attacks "
 		<< target 
 		<< " with a fly piano, causing "
-		<< " 50 damage points and severe hearing loss."
+		<< "50 damage points and severe hearing loss."
 		<< std::endl;
 }
 
@@ -199,6 +194,6 @@ void FragTrap::_bakedInACakeAttack(std::string const& target) {
 		<< " bakes "
 		<< target 
 		<< " into a cake, causing "
-		<< " 50 damage points."
+		<< "50 damage points."
 		<< std::endl;
 }
