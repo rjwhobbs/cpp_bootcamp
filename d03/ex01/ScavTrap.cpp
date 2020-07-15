@@ -49,8 +49,14 @@ ScavTrap::ScavTrap (ScavTrap const& src) {
 
 	std::cout 
 		<< "Copied a scavtrap named "
-		<< this->name
+		<< src.name
 		<< std::endl;
+
+	this->randomChallenges[0] = &ScavTrap::_burpingChallenge;	
+	this->randomChallenges[1] = &ScavTrap::_codingChallenge;	
+	this->randomChallenges[2] = &ScavTrap::_eatMarshmelloChallenge;	
+	this->randomChallenges[3] = &ScavTrap::_gameOfSkateChallenge;	
+	this->randomChallenges[4] = &ScavTrap::_playScrabbleChallenge;
 
 	*this = src;	
 }	

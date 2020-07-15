@@ -4,6 +4,7 @@
 #include <sstream>
 #include <cstdlib>
 #include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main(void) {
 	FragTrap b("Steve");
@@ -20,6 +21,22 @@ int main(void) {
 			a.beRepaired(1);
 		}
 		a.vaulthunter_dot_exe("Joe");
+	}
+
+	ScavTrap x("Terres");
+	// ScavTrap a("Steve");
+	ScavTrap v(x);
+
+	v.meleeAttack("Snow flake");
+	v.rangedAtack("Cookie monster");
+	v.takeDamage(50);
+
+	i = 0;
+	while (i++ < 7) {
+		if (v.energy_points == 0) {
+			v.beRepaired(1);
+		}
+		v.challengeNewcomer("Socks");
 	}
 
 	return 0;	
