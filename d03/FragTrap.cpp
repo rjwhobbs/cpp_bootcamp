@@ -98,7 +98,7 @@ void FragTrap::meleeAttack(std::string const& target) {
 void FragTrap::takeDamage(unsigned int amount) {
 	if (amount > this->armor_dmg_reduction) {
 		amount -= this->armor_dmg_reduction;
-		if (amount < this->hit_points) {
+		if (amount <= this->hit_points) {
 			this->hit_points -= amount;
 		}
 		else {
@@ -115,7 +115,7 @@ void FragTrap::takeDamage(unsigned int amount) {
 }
 
 void FragTrap::beRepaired(unsigned int amount) {
-	if (amount + this->energy_points < this->max_energy_points) {
+	if (amount + this->energy_points <= this->max_energy_points) {
 		this->energy_points += amount;
 	}
 	else {
@@ -141,7 +141,7 @@ void FragTrap::vaulthunter_dot_exe(std::string const& target) {
 	// 	&FragTrap::_flamingFartAttack,
 	// };
 
-	if (this->energy_points > 25) {
+	if (this->energy_points >= 25) {
 		(this->*randAttacks[FragTrap::_random_index(max_attacks)])(target);
 		this->energy_points -= 25;
 	}
@@ -151,7 +151,7 @@ int FragTrap::_random_index(int max) {
 	sranddev();
 	int ranNum = rand() % max;
 
-	if (ranNum < -1) {
+	if (ranNum < 0) {
 		ranNum *= -1;
 	}
 

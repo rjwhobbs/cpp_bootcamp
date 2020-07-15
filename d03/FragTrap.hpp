@@ -29,15 +29,15 @@ class FragTrap {
 		unsigned int range_attack_dmg;
 		unsigned int armor_dmg_reduction;
 
-		private:
-			void (FragTrap::*randAttacks[5])(std::string const& target);
-			void _flamingFartAttack(std::string const& target);
-			void _flyingPianoAttack(std::string const& target);
-			void _squirrelArmyAttack(std::string const& target);
-			void _bakedInACakeAttack(std::string const& target);
-			void _acidPancakeAttack(std::string const& target);
+	private:
+		void (FragTrap::*randAttacks[5])(std::string const& target);
+		void _flamingFartAttack(std::string const& target);
+		void _flyingPianoAttack(std::string const& target);
+		void _squirrelArmyAttack(std::string const& target);
+		void _bakedInACakeAttack(std::string const& target);
+		void _acidPancakeAttack(std::string const& target);
 
-			static int _random_index(int max);
+		static int _random_index(int max);
 };
 
 #endif
