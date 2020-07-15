@@ -45,9 +45,16 @@ FragTrap::FragTrap (std::string const name) :
 		<< std::endl;	
 }	
 	
-FragTrap::FragTrap (FragTrap const& src) {	
+FragTrap::FragTrap (FragTrap const& src) {
+	
+	this->randAttacks[0] = &FragTrap::_acidPancakeAttack;
+	this->randAttacks[1] = &FragTrap::_bakedInACakeAttack;
+	this->randAttacks[2] = &FragTrap::_flamingFartAttack;
+	this->randAttacks[3] = &FragTrap::_squirrelArmyAttack;
+	this->randAttacks[4] = &FragTrap::_flyingPianoAttack;
+
 	std::cout << "Copied the fragtrap named "
-		<< this->name
+		<< src.name
 		<< std::endl;
 	*this = src;
 }	
@@ -132,7 +139,6 @@ void FragTrap::beRepaired(unsigned int amount) {
 
 void FragTrap::vaulthunter_dot_exe(std::string const& target) {
 	int max_attacks = 5;
-
 	if (this->energy_points >= 25) {
 		(this->*randAttacks[FragTrap::_random_index(max_attacks)])(target);
 		this->energy_points -= 25;
@@ -140,6 +146,7 @@ void FragTrap::vaulthunter_dot_exe(std::string const& target) {
 	else {
 		std::cout << "Can't perform attack, not enough energy points" << std::endl;
 	}
+	std::cout << "Here" << std::endl;
 }
 
 int FragTrap::_random_index(int max) {

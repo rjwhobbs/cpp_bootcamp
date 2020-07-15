@@ -5,19 +5,9 @@
 #include <cstdlib>
 #include "FragTrap.hpp"
 
-int random_index(int max) {
-	sranddev();
-	int ranNum = rand() % max;
-
-	if (ranNum < -1) {
-		ranNum *= -1;
-	}
-
-	return ranNum;
-}
-
 int main(void) {
-	FragTrap a("Steve");
+	FragTrap b("Steve");
+	FragTrap a(b);
 
 	a.meleeAttack("Frank");
 	a.rangedAtack("Sandra");

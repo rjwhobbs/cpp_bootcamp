@@ -5,23 +5,15 @@
 #include <cstdlib>
 #include "FragTrap.hpp"
 
-int random_index(int max) {
-	sranddev();
-	int ranNum = rand() % max;
-
-	if (ranNum < -1) {
-		ranNum *= -1;
-	}
-
-	return ranNum;
-}
-
 int main(void) {
-	FragTrap a("Steve");
+	FragTrap b("Steve");
+	// FragTrap a("Steve");
+	FragTrap a(b);
 
 	a.meleeAttack("Frank");
 	a.rangedAtack("Sandra");
 	a.takeDamage(50);
+	std::cout << a.energy_points << std::endl;
 	int i = 0;
 	while (i++ < 7) {
 		if (a.energy_points == 0) {
