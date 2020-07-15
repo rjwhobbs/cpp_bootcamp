@@ -13,11 +13,11 @@ int main(void) {
 	a.meleeAttack("Frank");
 	a.rangedAtack("Sandra");
 	a.takeDamage(50);
-	std::cout << a.energy_points << std::endl;
+
 	int i = 0;
 	while (i++ < 7) {
 		if (a.energy_points == 0) {
-			a.beRepaired(100);
+			a.beRepaired(1);
 		}
 		a.vaulthunter_dot_exe("Joe");
 	}

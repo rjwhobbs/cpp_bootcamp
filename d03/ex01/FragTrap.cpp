@@ -46,7 +46,7 @@ FragTrap::FragTrap (std::string const name) :
 }	
 	
 FragTrap::FragTrap (FragTrap const& src) {
-	
+
 	this->randAttacks[0] = &FragTrap::_acidPancakeAttack;
 	this->randAttacks[1] = &FragTrap::_bakedInACakeAttack;
 	this->randAttacks[2] = &FragTrap::_flamingFartAttack;
@@ -133,7 +133,7 @@ void FragTrap::beRepaired(unsigned int amount) {
 		<< amount
 		<< " energy points and has a total of "
 		<< this->energy_points
-		<< "."
+		<< " energy points."
 		<< std::endl;
 }
 
