@@ -46,7 +46,8 @@ FragTrap::FragTrap (std::string const name) :
 }	
 	
 FragTrap::FragTrap (FragTrap const& src) {	
-	std::cout << "Copied the fragtrap named "
+	std::cout 
+		<< "Copied the fragtrap named "
 		<< this->name
 		<< std::endl;
 	*this = src;
