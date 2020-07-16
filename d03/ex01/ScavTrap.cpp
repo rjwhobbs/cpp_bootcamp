@@ -132,11 +132,11 @@ void ScavTrap::takeDamage(unsigned int amount) {
 
 void ScavTrap::beRepaired(unsigned int amount) {
 
-	if (amount + this->energy_points <= this->max_energy_points) {
-		this->energy_points += amount;
+	if (amount + this->hit_points <= this->max_hit_points) {
+		this->hit_points += amount;
 	}
 	else {
-		this->energy_points = this->max_energy_points;
+		this->hit_points = this->max_hit_points;
 	}
 
 	std::cout 
@@ -144,9 +144,9 @@ void ScavTrap::beRepaired(unsigned int amount) {
 		<< this->name
 		<< " was repaired with "
 		<< amount
-		<< " energy points and has a total of "
-		<< this->energy_points
-		<< "."
+		<< " hit points and has a total of "
+		<< this->hit_points
+		<< " hit points."
 		<< std::endl;
 }
 

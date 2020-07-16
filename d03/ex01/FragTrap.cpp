@@ -122,18 +122,18 @@ void FragTrap::takeDamage(unsigned int amount) {
 }
 
 void FragTrap::beRepaired(unsigned int amount) {
-	if (amount + this->energy_points <= this->max_energy_points) {
-		this->energy_points += amount;
+	if (amount + this->hit_points <= this->max_hit_points) {
+		this->hit_points += amount;
 	}
 	else {
-		this->energy_points = this->max_energy_points;
+		this->hit_points = this->max_hit_points;
 	}
 	std::cout << this->name
 		<< " was repaired with "
 		<< amount
-		<< " energy points and has a total of "
-		<< this->energy_points
-		<< " energy points."
+		<< " hit points and has a total of "
+		<< this->hit_points
+		<< " hit points."
 		<< std::endl;
 }
 
