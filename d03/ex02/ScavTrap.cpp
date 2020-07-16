@@ -2,15 +2,12 @@
 #include "ScavTrap.hpp"	
 	
 ScavTrap::ScavTrap (void) :
-	name(""),
-	level(1),
-	hit_points(100),
-	max_hit_points(100),
-	energy_points(50),
-	max_energy_points(100),
-	melee_attack_dmg(20),
-	range_attack_dmg(15),
-	armor_dmg_reduction(3) {
+	ClapTrap() {
+	
+	this->energy_points = 50;
+	this->melee_attack_dmg = 20;
+	this->range_attack_dmg = 15;
+	this->armor_dmg_reduction = 3;
 
 	this->randomChallenges[0] = &ScavTrap::_burpingChallenge;	
 	this->randomChallenges[1] = &ScavTrap::_codingChallenge;	
@@ -23,15 +20,12 @@ ScavTrap::ScavTrap (void) :
 }	
 
 ScavTrap::ScavTrap(std::string const name) : 
-	name(name),
-	level(1),
-	hit_points(100),
-	max_hit_points(100),
-	energy_points(50),
-	max_energy_points(100),
-	melee_attack_dmg(20),
-	range_attack_dmg(15),
-	armor_dmg_reduction(3) {
+	ClapTrap(name) {
+
+	this->energy_points = 50;
+	this->melee_attack_dmg = 20;
+	this->range_attack_dmg = 15;
+	this->armor_dmg_reduction = 3;
 
 	this->randomChallenges[0] = &ScavTrap::_burpingChallenge;	
 	this->randomChallenges[1] = &ScavTrap::_codingChallenge;	
@@ -83,71 +77,6 @@ ScavTrap& ScavTrap::operator=(ScavTrap const& rhs) {
 		this->armor_dmg_reduction = rhs.armor_dmg_reduction;
 	}	
 	return *this;	
-}
-
-void ScavTrap::rangedAtack(std::string const& target) {
-	std::cout
-		<< "A faithful little scavtrap called " 
-		<< this->name
-		<< " attacks "
-		<< target 
-		<< " with a ranged attack, causing "
-		<< this->range_attack_dmg
-		<< " damage points."
-		<< std::endl;
-}
-
-void ScavTrap::meleeAttack(std::string const& target) {
-	std::cout 
-		<< "A faithful little scavtrap called " 
-		<< this->name
-		<< " attacks "
-		<< target 
-		<< " with a melee attack, causing "
-		<< this->melee_attack_dmg
-		<< " damage points."
-		<< std::endl;
-}
-
-void ScavTrap::takeDamage(unsigned int amount) {
-	if (amount > this->armor_dmg_reduction) {
-		amount -= this->armor_dmg_reduction;
-		if (amount <= this->hit_points) {
-			this->hit_points -= amount;
-		}
-		else {
-			this->hit_points = 0;
-		}
-	}
-	std::cout 
-		<< "Oh no, A faithful little scavtrap called " 
-		<< this->name
-		<< " was attacked with "
-		<< amount
-		<< " damage points and has "
-		<< this->hit_points
-		<< " HP left."
-		<< std::endl;
-}
-
-void ScavTrap::beRepaired(unsigned int amount) {
-
-	if (amount + this->energy_points <= this->max_energy_points) {
-		this->energy_points += amount;
-	}
-	else {
-		this->energy_points = this->max_energy_points;
-	}
-
-	std::cout 
-		<< "A faithful little scavtrap called " 
-		<< this->name
-		<< " was repaired with "
-		<< amount
-		<< " energy points and has a total of "
-		<< this->energy_points
-		<< "."
-		<< std::endl;
 }
 
 void ScavTrap::challengeNewcomer(std::string const& target) {
