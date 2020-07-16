@@ -77,7 +77,6 @@ void FragTrap::vaulthunter_dot_exe(std::string const& target) {
 	else {
 		std::cout << "Can't perform attack, not enough energy points" << std::endl;
 	}
-	std::cout << "Here" << std::endl;
 }
 
 int FragTrap::_random_index(int max) {
