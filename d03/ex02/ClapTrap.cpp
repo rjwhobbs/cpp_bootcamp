@@ -36,7 +36,9 @@ ClapTrap::ClapTrap (std::string const name) :
 ClapTrap::ClapTrap (ClapTrap const& src) {
 	std::cout
 		<< "ClapTrap copy constructor called"
-		<< std::endl;	
+		<< std::endl;
+
+	*this = src;	
 }	
 	
 ClapTrap::~ClapTrap (void) {	
@@ -59,4 +61,59 @@ ClapTrap& ClapTrap::operator=(ClapTrap const& rhs) {
 		this->armor_dmg_reduction = rhs.armor_dmg_reduction;
 	}	
 	return *this;	
+}
+
+void ClapTrap::rangedAtack(std::string const& target) {
+	std::cout << this->name
+		<< " attacks "
+		<< target 
+		<< " with a ranged attack, causing "
+		<< this->range_attack_dmg
+		<< " damage points."
+		<< std::endl;
+}
+
+void ClapTrap::meleeAttack(std::string const& target) {
+	std::cout << this->name
+		<< " attacks "
+		<< target 
+		<< " with a melee attack, causing "
+		<< this->melee_attack_dmg
+		<< " damage points."
+		<< std::endl;
+}
+
+void ClapTrap::takeDamage(unsigned int amount) {
+	if (amount > this->armor_dmg_reduction) {
+		amount -= this->armor_dmg_reduction;
+		if (amount <= this->hit_points) {
+			this->hit_points -= amount;
+		}
+		else {
+			this->hit_points = 0;
+		}
+	}
+	std::cout << this->name
+		<< " has taken "
+		<< amount
+		<< " damage points and has "
+		<< this->hit_points
+		<< " HP left."
+		<< std::endl;
+}
+
+void ClapTrap::beRepaired(unsigned int amount) {
+	if (amount + this->hit_points <= this->max_hit_points) {
+		this->hit_points += amount;
+	}
+	else {
+		this->hit_points = this->max_hit_points;
+	}
+	std::cout << this->name
+		<< " was repaired with "
+		<< amount
+		<< " hit points and has a total of "
+		<< this->hit_points
+		<< " hit points."
+		<< std::endl;
 }

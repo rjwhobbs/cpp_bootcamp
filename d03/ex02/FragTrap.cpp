@@ -5,18 +5,7 @@
 #include "ClapTrap.hpp"	
 	
 FragTrap::FragTrap (void) : 
-	ClapTrap()
-	// name(""),
-	// level(1),
-	// hit_points(100),
-	// max_hit_points(100),
-	// energy_points(100),
-	// max_energy_points(100),
-	// melee_attack_dmg(30),
-	// range_attack_dmg(20),
-	// armor_dmg_reduction(5) 
-	{
-
+	ClapTrap() {
 
 	this->randAttacks[0] = &FragTrap::_acidPancakeAttack;
 	this->randAttacks[1] = &FragTrap::_bakedInACakeAttack;
@@ -28,17 +17,7 @@ FragTrap::FragTrap (void) :
 }
 
 FragTrap::FragTrap (std::string const name) : 
-	ClapTrap(name)
-	// name(name),
-	// level(1),
-	// hit_points(100),
-	// max_hit_points(100),
-	// energy_points(100),
-	// max_energy_points(100),
-	// melee_attack_dmg(30),
-	// range_attack_dmg(20),
-	// armor_dmg_reduction(5) 
-	{
+	ClapTrap(name) {
 
 	this->randAttacks[0] = &FragTrap::_acidPancakeAttack;
 	this->randAttacks[1] = &FragTrap::_bakedInACakeAttack;
@@ -62,6 +41,7 @@ FragTrap::FragTrap (FragTrap const& src) {
 	std::cout << "Copied the fragtrap named "
 		<< src.name
 		<< std::endl;
+
 	*this = src;
 }	
 	
@@ -86,61 +66,6 @@ FragTrap& FragTrap::operator=(FragTrap const& rhs) {
 		this->armor_dmg_reduction = rhs.armor_dmg_reduction;
 	}	
 	return *this;	
-}
-
-void FragTrap::rangedAtack(std::string const& target) {
-	std::cout << this->name
-		<< " attacks "
-		<< target 
-		<< " with a ranged attack, causing "
-		<< this->range_attack_dmg
-		<< " damage points."
-		<< std::endl;
-}
-
-void FragTrap::meleeAttack(std::string const& target) {
-	std::cout << this->name
-		<< " attacks "
-		<< target 
-		<< " with a melee attack, causing "
-		<< this->melee_attack_dmg
-		<< " damage points."
-		<< std::endl;
-}
-
-void FragTrap::takeDamage(unsigned int amount) {
-	if (amount > this->armor_dmg_reduction) {
-		amount -= this->armor_dmg_reduction;
-		if (amount <= this->hit_points) {
-			this->hit_points -= amount;
-		}
-		else {
-			this->hit_points = 0;
-		}
-	}
-	std::cout << this->name
-		<< " was attacked with "
-		<< amount
-		<< " damage points and has "
-		<< this->hit_points
-		<< " HP left."
-		<< std::endl;
-}
-
-void FragTrap::beRepaired(unsigned int amount) {
-	if (amount + this->energy_points <= this->max_energy_points) {
-		this->energy_points += amount;
-	}
-	else {
-		this->energy_points = this->max_energy_points;
-	}
-	std::cout << this->name
-		<< " was repaired with "
-		<< amount
-		<< " energy points and has a total of "
-		<< this->energy_points
-		<< " energy points."
-		<< std::endl;
 }
 
 void FragTrap::vaulthunter_dot_exe(std::string const& target) {
