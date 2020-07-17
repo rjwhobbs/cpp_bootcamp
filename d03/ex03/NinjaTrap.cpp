@@ -16,7 +16,8 @@ NinjaTrap::NinjaTrap (void) : ClapTrap() {
 		<< std::endl;
 }
 
-NinjaTrap::NinjaTrap (std::string& name) : ClapTrap(name) {
+NinjaTrap::NinjaTrap (std::string const name) : 
+	ClapTrap(name) {
 	this->max_hit_points = 60;
 	this->energy_points = 120;
 	this->max_energy_points = 120;
@@ -25,7 +26,9 @@ NinjaTrap::NinjaTrap (std::string& name) : ClapTrap(name) {
 	this->armor_dmg_reduction = 0;
 
 	std::cout
-		<< "NinjaTrap \"name\" constructor called."
+		<< "NinjaTrap by the name of " 
+		<< this->name 
+		<< " has been created."
 		<< std::endl;
 }
 	
@@ -38,6 +41,10 @@ NinjaTrap::NinjaTrap (NinjaTrap const& src) {
 }	
 	
 NinjaTrap::~NinjaTrap (void) {	
+	std::cout << "A NinjaTrap by the name of " 
+		<< this->name 
+		<< " just got destroyed, or is he jsut hidding?"
+		<< std::endl;	
 }	
 	
 NinjaTrap& NinjaTrap::operator=(NinjaTrap const& rhs) {	
@@ -54,4 +61,40 @@ NinjaTrap& NinjaTrap::operator=(NinjaTrap const& rhs) {
 		this->armor_dmg_reduction = rhs.armor_dmg_reduction;
 	}	
 	return *this;	
+}
+
+void NinjaTrap::ninjaShoebox(NinjaTrap const& target) {
+	if (this != &target) {
+		std::cout
+			<< "A NinjaTrap named "
+			<< this->name
+			<< " has hidden himself in a shoebox and launches a surprise attack on another NinjaTrap called "
+			<< target.name
+			<< " ."
+			<< std::endl;
+	} else {
+		std::cout
+			<< "Potato, you can't shoebox attack yourself"
+			<< std::endl;
+	}
+}
+
+void NinjaTrap::ninjaShoebox(FragTrap const& target) {
+	std::cout
+		<< "A NinjaTrap named "
+		<< this->name
+		<< " has hidden himself in a shoebox and launches a surprise attack on a FragTrap called "
+		<< target.name
+		<< " ."
+		<< std::endl;
+}
+
+void NinjaTrap::ninjaShoebox(ScavTrap const& target) {
+	std::cout
+		<< "A NinjaTrap named "
+		<< this->name
+		<< " has hidden himself in a shoebox and launches a surprise attack on a ScavTrap called "
+		<< target.name
+		<< " ."
+		<< std::endl;
 }

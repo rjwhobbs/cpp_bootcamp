@@ -15,7 +15,7 @@ class ClapTrap {
 		void takeDamage(unsigned int amount); 
 		void beRepaired(unsigned int amount);
 
-	protected:
+	// protected:
 		std::string name;
 
 		unsigned int level;
