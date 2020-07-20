@@ -3,6 +3,7 @@
 #include <iostream>
 #include <ostream>	
 #include <string>
+#include "Victim.hpp"
 	
 class Sorcerer {	
 	public:	
@@ -11,10 +12,12 @@ class Sorcerer {
 		Sorcerer& operator=(Sorcerer const& rhs);	
 		~Sorcerer(void);
 
+		void polymorph(Victim const& victim) const;
+
 		std::string getName(void) const;
 		std::string getTitle(void) const;
 
-	private:
+	protected:
 		Sorcerer(void);
 		std::string _name;		
 		std::string _title;		

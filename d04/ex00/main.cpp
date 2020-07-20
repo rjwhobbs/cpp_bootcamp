@@ -3,10 +3,14 @@
 #include <iostream>	
 #include <sstream>
 #include "Sorcerer.hpp"
+#include "Victim.hpp"
 
 int main(void) {	
-	Sorcerer Steve("Steve", "the Most BadAss");
+	Sorcerer steve("Steve", "the Most BadAss");
+	Victim tom("Tom");
 
-	std::cout << Steve;
+	std::cout << steve << tom;
+
+	steve.polymorph(tom);
 	return 0;	
 }

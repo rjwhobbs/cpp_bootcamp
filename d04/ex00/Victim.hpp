@@ -3,13 +3,20 @@
 #include <iostream>	
 	
 class Victim {	
-	public:	
-		Victim(void);	
+	public:
+		Victim(std::string const name);	
 		Victim(Victim const& src);	
-		~Victim(void);	
-	
 		Victim& operator=(Victim const& rhs);	
+		~Victim(void);	
+
+		std::string getName(void) const;
+		void getPolymorphed(void) const;
 	
-	private:	
-};	
+	protected:
+		Victim(void);	
+		std::string _name;	
+};
+
+std::ostream& operator<<(std::ostream& o, Victim const& rhs);
+
 #endif
