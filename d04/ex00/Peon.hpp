@@ -1,15 +1,18 @@
 #ifndef PEON_HPP	
 #define PEON_HPP	
 #include <iostream>	
+#include "Victim.hpp"
 	
-class Peon {	
-	public:	
-		Peon(void);	
+class Peon :
+	public Victim {	
+
+	public:
+		Peon(std::string const name);	
 		Peon(Peon const& src);	
-		~Peon(void);	
-	
 		Peon& operator=(Peon const& rhs);	
+		// ~Peon(void);	
 	
-	private:	
+	protected:	
+		Peon(void);	
 };	
 #endif

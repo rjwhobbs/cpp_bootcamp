@@ -14,7 +14,7 @@ Victim::Victim (std::string const name) :
 	_name(name) {
 	
 	std::cout
-		<< "Some random victim called " 
+		<< "(Victim con) Some random victim called " 
 		<< this->_name 
 		<< " just popped !"
 		<< std::endl;
