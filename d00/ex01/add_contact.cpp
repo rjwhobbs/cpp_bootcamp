@@ -20,6 +20,7 @@ static int not_all_space(std::string &str) {
 	return 1;
 }
 // What will switch case do if the number isn't found
+// Probably needs a default break
 static void print_command(int i) {
 	switch (i) {
 		case 0: print_cstr("Please enter your first name: "); break;

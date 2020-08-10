@@ -63,6 +63,7 @@ void print_index(Contact contacts[], int index_max) {
 	}
 }
 
+// Could probably pass by ref here
 void search(Contact contacts[]) {
 
 	int c = 0;

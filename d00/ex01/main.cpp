@@ -14,6 +14,7 @@ int	main(void) {
 
 	print_cstr_nl("Welcome to this amazing contact app.");
 
+	// ^D breaks the loop
 	while (1) {
 		print_cstr_nl("Main menu options: ADD, SEARCH, EXIT.");
 		std::getline(std::cin, command);

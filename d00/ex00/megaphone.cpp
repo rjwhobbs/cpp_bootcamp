@@ -7,7 +7,7 @@ void toupper_fn(char &c) { // So it looks like cpp can decide to pass by ref or 
 
 // This takes all the concatinated args and strips the unnecessary white space, not sure if that's required
 std::string new_str(std::string &str) {
-	std::string new_string = "";
+	std::string new_string = ""; // Probably not necessary, could probably just declare it.
 	size_t start = 0;
 	size_t end = 0;
 

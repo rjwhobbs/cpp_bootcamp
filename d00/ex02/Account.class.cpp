@@ -48,6 +48,7 @@ Account::Account(void) : _amount(0), _nbDeposits(0), _nbWithdrawals(0) {
 }
 
 Account::~Account(void) {
+	// Appears I need to -= totalAmount too?
 	Account::_nbAccounts -= 1;
 	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ';';
@@ -74,6 +75,7 @@ void Account::makeDeposit(int deposit) {
 	this->_amount += deposit;
 	Account::_totalAmount += deposit;
 
+	// So jank
 	state? this->_nbDeposits += 1: this->_nbDeposits += 0;
 	state? Account::_totalNbDeposits += 1: Account::_totalNbDeposits += 0;
 
