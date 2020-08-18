@@ -16,7 +16,7 @@ int main(void) {
 	// [20200529_070751] accounts:0;total:10;deposits:0;withdrawals:0
 	// [20200529_070751] index:0;amount:10;closed
 
-	accounts_t accounts(1, 10);
+	accounts_t accounts(1, 10); // first the size then the value
 	Account::displayAccountsInfos();
 
 	return 0;

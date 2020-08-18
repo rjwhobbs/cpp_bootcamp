@@ -45,6 +45,7 @@ void Logger::logToFile(const std::string message) const {
 		return ;
 	}
 
+	// Doesn't this need to be closed?
 	ofs << this->makeLogEntry(message);
 	ofs << std::endl;
 }

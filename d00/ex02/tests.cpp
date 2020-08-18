@@ -12,6 +12,7 @@
 #include <functional>
 #include "Account.class.hpp"
 
+// typedef std::vector<int> int_v; 
 
 int		main( void ) {
 
