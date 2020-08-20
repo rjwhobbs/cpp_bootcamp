@@ -71,7 +71,9 @@ int main(void) {
 	// int g = 4;
 	std::cout << x << std::endl;
 	std::cout << y << std::endl;
-	x.operator=(y);
+	// y op get called first
+	x = y = z;
+	// x = y = z;
 	std::cout << x << std::endl;
 	//Interger a = z.operator+(y); 
 	// Interger a = z + y;
