@@ -30,6 +30,10 @@ int Interger::getValue(void) const {
 	return this->_n;
 }
 
+// Because '=' can be chained we need to return a reference
+// and not a value, the standard specifies which
+// operators need by ref or value
+// generally modified values need a ref.
 Interger& Interger::operator=(const Interger &rhs) {
 	std::cout << "Assignation called from " 
 		<< this->_n
@@ -65,12 +69,15 @@ int main(void) {
 	// int e = 2;
 	// int f = 3;
 	// int g = 4;
-
+	std::cout << x << std::endl;
+	std::cout << y << std::endl;
+	x.operator=(y);
+	std::cout << x << std::endl;
 	//Interger a = z.operator+(y); 
 	// Interger a = z + y;
-	Interger a = x.operator+(y.operator+(z)); 
+	// Interger a = x.operator+(y.operator+(z)); 
 	// Interger a = x + y + z;
-	operator<<(std::cout, a) << std::endl;
+	// operator<<(std::cout, a) << std::endl;
 	// int q = e + f + g;
 	// std::cout << q << std::endl;
 
