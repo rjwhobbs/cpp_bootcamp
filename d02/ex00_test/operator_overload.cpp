@@ -34,6 +34,8 @@ int Interger::getValue(void) const {
 // and not a value, the standard specifies which
 // operators need by ref or value
 // generally modified values need a ref.
+// eg x = y = z
+// first y = z then x  = y
 Interger& Interger::operator=(const Interger &rhs) {
 	std::cout << "Assignation called from " 
 		<< this->_n

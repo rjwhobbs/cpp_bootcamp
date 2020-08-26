@@ -45,6 +45,7 @@ int Fixed::toInt(void) const {
 	// Maybe I should get the float val then cast to int?
 	signed int pad = 0;
 
+	// This is to preserve the signed bit if the number is < 0
 	if (this->_value < 0) {
 		pad = 0xFF000000;
 	} 
@@ -112,6 +113,7 @@ Fixed Fixed::operator*(Fixed& rhs) const {
 	return temp;
 }
 
+// these are prefix and postfix
 Fixed Fixed::operator++(int) {
 	Fixed temp;
 	temp.setRawBits(this->_value);
